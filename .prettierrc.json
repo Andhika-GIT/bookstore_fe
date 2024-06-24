@@ -1,0 +1,13 @@
+{
+  "singleQuote": true,
+  "printWidth": 5000,
+  "overrides": [
+    {
+      "files": "*",
+      "options": {
+        "printWidth": 100,
+        "singleQuote": false
+      }
+    }
+  ]
+}
