@@ -1,7 +1,5 @@
-import Text from './text';
-import { Input } from './input';
+import Text from "./text";
+import { Input } from "./input";
+import { Button } from "./button";
 
-export {
-  Text,
-  Input,
-};
+export { Text, Input, Button };

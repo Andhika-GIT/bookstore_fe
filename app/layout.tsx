@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="py-24 px-20">{children}</div>
+        <div className="pt-24 py-16 px-20 bg-primary h-max">{children}</div>
       </body>
     </html>
   );
