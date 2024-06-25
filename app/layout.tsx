@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import "@smastrom/react-rating/style.css";
 import "./globals.css";
 
 const inter = Inter({
@@ -19,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="pt-24 py-16 px-20 bg-primary h-max">{children}</div>
+        <div className="pt-24 px-20 pb-10 bg-primary">{children}</div>
       </body>
     </html>
   );

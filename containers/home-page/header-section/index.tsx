@@ -2,7 +2,7 @@ import { Input, Text } from "@/components/ui";
 import React from "react";
 import { CiSearch, CiUser, CiShoppingCart } from "react-icons/ci";
 
-const HeaderSection = () => {
+const HeaderSection: React.FC = () => {
   return (
     <div className="flex items-center justify-between gap-4">
       <Text type="h1">Bookstore</Text>

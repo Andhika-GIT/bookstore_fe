@@ -1,14 +1,30 @@
-import React, { ReactNode } from "react";
+import React, { ForwardedRef, ReactNode } from "react";
 
 type TextProps = {
-  type: "p" | "h1" | "h2" | "h3";
+  textRef?: ForwardedRef<HTMLElement>;
+  type?: keyof JSX.IntrinsicElements;
   className?: string;
+  formatted?: boolean;
   children: ReactNode;
+  [key: string]: any;
 };
 
-const Text: React.FC<TextProps> = ({ type, className, children }) => {
-  const Element = type || "p";
-  return <Element className={className}>{children}</Element>;
+const Text: React.FC<TextProps> = ({
+  textRef,
+  type = "span",
+  className = "",
+  formatted,
+  children,
+  ...props
+}) => {
+  return React.createElement(type, {
+    dangerouslySetInnerHTML: {
+      __html: children,
+    },
+    className: `${className} m-0`,
+    ref: textRef,
+    ...props,
+  });
 };
 
 export default Text;
