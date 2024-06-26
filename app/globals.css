@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* global.css */
+@font-face {
+  font-family: "Mona Sans";
+  src: url("/fonts/mona-sans/MonaSans-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("/fonts/mona-sans/MonaSans-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
