@@ -2,31 +2,27 @@ import { Book } from "@/types";
 
 export const books: Array<Book> = [
   {
-    id: "sdfi0129e01923",
-    imgURL:
-      "https://images.unsplash.com/photo-1718964313551-420f92249238?q=80&w=1884&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Confident Measurement",
-    rating: "4.5",
+    id: "GA3MP4XHFC",
+    imgURL: "/heart.jpg",
+    title: "The heart",
+    rating: "3.5",
   },
   {
-    id: "sdfi0129e01923",
-    imgURL:
-      "https://images.unsplash.com/photo-1718964313551-420f92249238?q=80&w=1884&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Confident Measurement",
-    rating: "4.5",
+    id: "ZYCPN09YUH",
+    imgURL: "/romance.jpg",
+    title: "The green and the purple",
+    rating: "2.5",
   },
   {
-    id: "sdfi0129e01923",
-    imgURL:
-      "https://images.unsplash.com/photo-1718964313551-420f92249238?q=80&w=1884&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Confident Measurement",
-    rating: "4.5",
+    id: "C0CM5MDJ4M",
+    imgURL: "/stay-with-me.jpg",
+    title: "Stay with me",
+    rating: "3",
   },
   {
-    id: "sdfi0129e01923",
-    imgURL:
-      "https://images.unsplash.com/photo-1718964313551-420f92249238?q=80&w=1884&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Confident Measurement",
-    rating: "4.5",
+    id: "7IVTUXC758",
+    imgURL: "/time.jpg",
+    title: "The time",
+    rating: "4",
   },
 ];

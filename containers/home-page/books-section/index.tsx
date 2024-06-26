@@ -19,8 +19,10 @@ const BooksSection: React.FC<BooksSectionProps> = ({ books }) => {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-10 auto-rows-max">
         {books?.map((book, index) => (
           <Card key={index} className="w-full bg-white shadow-lg pb-3">
-            <CardContent className="w-full space-y-6 px-2 py-2">
-              <Image src={book?.imgURL} alt={`book-${index}`} width={400} height={400} />
+            <CardContent className="w-full space-y-6 px-3 py-3">
+              <div className="flex justify-center items-center">
+                <Image src={book?.imgURL} alt={`book-${index}`} width={350} height={200} />
+              </div>
               <div className="flex flex-col items-center space-y-1">
                 <Text type="span" className="font-semibold">
                   {book?.title}

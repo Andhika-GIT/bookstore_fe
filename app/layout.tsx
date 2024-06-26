@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import "@smastrom/react-rating/style.css";
 import "./globals.css";
+import { Rubik } from "next/font/google";
 
-const inter = Inter({
+const rubik = Rubik({
   subsets: ["latin"],
 });
 
@@ -19,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={rubik.className}>
         <div className="pt-24 px-20 pb-10 bg-primary">{children}</div>
       </body>
     </html>
