@@ -42,6 +42,10 @@ const config = {
           DEFAULT: "#F7EBE4",
           dark: "#2779bd",
         },
+        primary_green: {
+          DEFAULT: "#7FBF7F",
+          dark: "#72AB72",
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",

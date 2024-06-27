@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={rubik.className}>
-        <div className="bg-primary font-mona-sans">{children}</div>
+        <div className="pt-24 px-20 pb-10  bg-primary font-mona-sans">{children}</div>
       </body>
     </html>
   );

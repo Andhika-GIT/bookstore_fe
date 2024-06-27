@@ -12,7 +12,7 @@ const BookDetail = ({ params }: { params: { id: string } }) => {
     return <div>not found</div>;
   }
   return (
-    <div className="pt-24 px-6 pb-10 grid grid-cols-3 gap-x-14 auto-rows-fr">
+    <div className="grid grid-cols-3 gap-x-14 auto-rows-fr">
       <BookInfoSection {...selectedBook} className="col-span-2" />
       <RelatedSection books={books} />
     </div>

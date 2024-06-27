@@ -56,7 +56,7 @@ const BookInfoSection: React.FC<BookInfoSectionProps> = ({
             <Text type="p">{total_page}</Text>
           </div>
         </div>
-        <Button variant="light_blue">Add to chart</Button>
+        <Button variant="light_green">Add to chart</Button>
       </div>
     </div>
   );
