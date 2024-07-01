@@ -21,7 +21,9 @@ const BookInfoSection: React.FC<BookInfoSectionProps> = ({
   className,
 }) => {
   return (
-    <div className={`flex gap-7 col-span-1 ${className}`}>
+    <div
+      className={`flex flex-col items-center md:items-stretch md:flex-row gap-7 col-span-1 ${className}`}
+    >
       <Image
         src={imgURL}
         width={250}
@@ -29,12 +31,11 @@ const BookInfoSection: React.FC<BookInfoSectionProps> = ({
         alt={`img-${title}-${id}`}
         className="shadow-xl"
       />
-      <div className="flex flex-col justify-between">
+
+      <div className="flex flex-col justify-between space-y-3">
         <div className="space-y-3">
           <div className="space-y-1">
-            <Text type="h1" className="font-bold text-2xl lg:text-3xl">
-              {title}
-            </Text>
+            <Text type="h2">{title}</Text>
             <div className="flex space-x-3 items-center">
               <p className="font-light opacity-50">By {author}</p>
               <Rating readOnly value={parseFloat(rating) || 0} style={{ maxWidth: 100 }} />

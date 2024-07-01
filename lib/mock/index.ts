@@ -1,3 +1,4 @@
-import { books } from "./Books";
+import { books } from "./books";
+import { reviews } from "./reviews";
 
-export { books };
+export { books, reviews };

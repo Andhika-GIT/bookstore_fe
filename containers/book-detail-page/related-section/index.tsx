@@ -10,13 +10,13 @@ type RelatedSectionProps = {
 
 const RelatedSection: React.FC<RelatedSectionProps> = ({ books, className }) => {
   return (
-    <div className={`flex flex-col justify-between items-start ${className}`}>
-      <div className="space-y-2">
-        <Text type="h2" className="font-bold">
+    <div className={`flex flex-col space-y-5 justify-between items-start ${className}`}>
+      <div className="space-y-2 w-full">
+        <Text type="h3" className="font-bold">
           Related Books
         </Text>
         <Text type="p">Some items that you might be interested in</Text>
-        <div className="grid lg:grid-cols-3 gap-x-3 gap-y-2 w-full auto-cols-max">
+        <div className="grid justify-items-center grid-cols-3 gap-x-3 gap-y-2 w-full auto-cols-max">
           {books
             ?.slice(0, 3)
             .map((book, index) => (
