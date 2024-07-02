@@ -49,4 +49,16 @@ export const books: Array<Book> = [
     total_page: 300,
     publication_date: "2024-06-15",
   },
+  {
+    id: "euNFgWZ2KMhLYAIcDCIO",
+    imgURL: "/putih-langit.jpg",
+    author: "Noell Morisson",
+    publisher: "Thomas Nelson INC",
+    description:
+      "adorned with a serene night sky full of stars above majestic mountains, sets the tone for a journey through dreams and reflections. Each poem delves into the profound emotions and experiences that shape our inner world, inviting readers to connect deeply with the author's poetic vision. This collection not only offers beautiful verses but also unveils the creative process and the heartfelt moments that inspired them. Perfect for poetry lovers and those seeking to understand the depths of poetic inspiration, 'Dalam ke Mimpi' promises a rich, immersive reading experience",
+    title: "putih langit",
+    rating: "5",
+    total_page: 350,
+    publication_date: "2024-06-27",
+  },
 ];
