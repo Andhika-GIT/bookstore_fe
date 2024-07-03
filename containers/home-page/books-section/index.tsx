@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 type BooksSectionProps = {
-  books: Array<Book>;
+  books: Array<Book> | undefined;
 };
 
 const BooksSection: React.FC<BooksSectionProps> = ({ books }) => {

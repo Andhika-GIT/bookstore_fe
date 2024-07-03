@@ -1,7 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["images.unsplash.com"],
+    remotePatterns: [
+      {
+        hostname: "cdn.discordapp.com",
+        // Optionally add pathPattern if needed
+        // pathPattern: "^/attachments/.*",
+      },
+      {
+        hostname: "i.imghippo.com",
+      },
+      {
+        hostname: "images.unsplash.com",
+      },
+    ],
   },
 };
 
