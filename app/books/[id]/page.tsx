@@ -1,12 +1,14 @@
 import React from "react";
 import { useRouter } from "next/navigation";
-import { books, reviews } from "@/lib/mock";
-import { Book } from "@/types";
+import { reviews } from "@/lib/mock";
 import { BookInfoSection, RelatedSection, ReviewSection } from "@/containers";
+import { books } from "@/lib/mock";
+import { getOneBook } from "@/app/actions/book";
 
-const BookDetail = ({ params }: { params: { id: string } }) => {
+const BookDetail = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  const selectedBook = books.find((item) => item.id === id);
+
+  const selectedBook = await getOneBook(parseInt(id));
 
   if (!selectedBook) {
     return <div>not found</div>;

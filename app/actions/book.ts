@@ -13,3 +13,11 @@ export const getBooks = async (page: number = 1): Promise<Book[] | undefined> =>
 
   return data;
 };
+
+export const getOneBook = async (id: number): Promise<Book | undefined> => {
+  const response = await fetch(`${BASE_URL}/book/${id}`);
+
+  const data = await response.json();
+
+  return data;
+};
