@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import { FirstPanelSection, SecondPanelSection } from "@/containers/profile-page";
+import { user } from "@/lib/mock";
 
 type ProfileProps = {
   searchParams: {
@@ -9,9 +10,15 @@ type ProfileProps = {
 
 const Profile: NextPage<ProfileProps> = ({ searchParams: { section } }) => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 gap-y-3 h-screen">
-      <FirstPanelSection reviewCount={5} orderCount={5} section={section} name="Hubla.exe" />
-      <SecondPanelSection section={section} className="col-span-2" />
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-5 gap-y-3 h-screen">
+      <FirstPanelSection
+        reviewCount={5}
+        orderCount={5}
+        section={section}
+        username={user.username}
+        fullName={user.fullname}
+      />
+      <SecondPanelSection section={section} userProfile={user} className="col-span-2" />
     </div>
   );
 };

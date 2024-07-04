@@ -1,3 +1,4 @@
 import BookCard from "./BookCard";
+import InputWithLabel from "./InputWithLabel";
 
-export { BookCard };
+export { BookCard, InputWithLabel };

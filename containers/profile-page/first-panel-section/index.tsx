@@ -6,7 +6,8 @@ import React from "react";
 type FirstPanelSelectionProps = {
   reviewCount: number;
   orderCount: number;
-  name: string;
+  username: string;
+  fullName: string;
   className?: string;
   section: string;
 };
@@ -14,12 +15,13 @@ type FirstPanelSelectionProps = {
 const FirstPanelSection: React.FC<FirstPanelSelectionProps> = ({
   reviewCount,
   orderCount,
-  name,
+  username,
+  fullName,
   className = "",
   section,
 }) => {
   return (
-    <div className={`flex-col space-y-8 ${className}`}>
+    <div className={`flex-col space-y-6 ${className}`}>
       <div className="space-y-5">
         <div className="flex justify-center lg:justify-stretch">
           <Image
@@ -30,9 +32,14 @@ const FirstPanelSection: React.FC<FirstPanelSelectionProps> = ({
             height={300}
           />
         </div>
-        <Text type="h4" className="font-extrabold">
-          {name}
-        </Text>
+        <div className="space-y-[2px]">
+          <Text type="h4" className="font-extrabold">
+            {username}
+          </Text>
+          <Text type="h6" className="font-medium text-zinc-500">
+            {fullName}
+          </Text>
+        </div>
       </div>
 
       <div className="flex space-x-5 items-center">
@@ -50,9 +57,9 @@ const FirstPanelSection: React.FC<FirstPanelSelectionProps> = ({
         </div>
       </div>
 
-      <div className="flex-grow border-t-2 border-gray-400"></div>
+      <div className="flex-grow border-t-2 border-gray-400 w-full lg:max-w-[300px]"></div>
 
-      <div className="flex flex-row justify-center lg:justify-stretch lg:flex-col gap-y-3 h-full gap-x-5">
+      <div className="flex flex-row justify-center lg:justify-stretch lg:flex-col gap-y-2 h-full gap-x-5">
         <Link
           href="/profile?section=profile"
           className={`${section === "profile" ? "font-bold" : "opacity-60"}`}
