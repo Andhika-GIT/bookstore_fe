@@ -25,8 +25,8 @@ const BooksSection: React.FC<BooksSectionProps> = ({ books }) => {
               imgURL={book?.imgURL}
               title={book?.title}
               rating={book?.rating}
-              imageHeightClassName="h-[250px]"
-              cardClassName="w-[300px] cursor-pointer"
+              imageHeightClassName="h-[200px]"
+              cardClassName="w-[270px] cursor-pointer"
             />
           </Link>
         ))}

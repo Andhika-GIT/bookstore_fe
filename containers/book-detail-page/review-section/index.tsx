@@ -24,9 +24,11 @@ export const ReviewSection: React.FC<ReviewSectionProps> = ({ reviews, bookRatin
       {reviews?.map((item, index) => (
         <div className="space-y-3" key={index}>
           <div className="flex space-x-3 items-center">
-            <Text type="p">{item?.username}</Text>
+            <Text type="p" className="font-bold">
+              {item?.username}
+            </Text>
             <Rating readOnly value={parseFloat(item?.userRating) || 0} style={{ maxWidth: 100 }} />
-            <Text type="p" className="text-slate-500">
+            <Text type="p" className="from-neutral-900">
               {item?.userRating}
             </Text>
           </div>
