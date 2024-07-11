@@ -1,5 +1,6 @@
 import React from "react";
-import { Label, Textarea } from "../ui";
+import { Label, Textarea, Text } from "../ui";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 type TextareaWithLabelProps = {
   labelFor?: string;
@@ -10,6 +11,8 @@ type TextareaWithLabelProps = {
   textareaPlaceholder?: string;
   labelText: string;
   value?: string | number;
+  register?: UseFormRegisterReturn;
+  errorMessage?: string;
 };
 
 const TextareaWithLabel: React.FC<TextareaWithLabelProps> = ({
@@ -20,21 +23,30 @@ const TextareaWithLabel: React.FC<TextareaWithLabelProps> = ({
   textareaClassName = "",
   labelText = "",
   value,
-
+  register,
   textareaPlaceholder = "input here..",
+  errorMessage,
 }) => {
   return (
     <div className="flex flex-col gap-y-2">
       <Label htmlFor={labelFor} className={labelClassName}>
         {labelText}
       </Label>
-      <Textarea
-        value={value}
-        disabled={disabled}
-        id={textareaId}
-        placeholder={textareaPlaceholder}
-        className={textareaClassName}
-      />
+      <div className="relative">
+        <Textarea
+          value={value}
+          disabled={disabled}
+          id={textareaId}
+          placeholder={textareaPlaceholder}
+          className={textareaClassName}
+          {...register}
+        />
+        {errorMessage && (
+          <Text type="p" className="text-xs text-red-600 absolute left-0">
+            {errorMessage}
+          </Text>
+        )}
+      </div>
     </div>
   );
 };

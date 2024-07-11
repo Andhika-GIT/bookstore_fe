@@ -1,5 +1,6 @@
 import React from "react";
-import { Input, Label } from "../ui";
+import { Input, Label, Text } from "../ui";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 type InputWithLabelProps = {
   labelFor?: string;
@@ -11,6 +12,8 @@ type InputWithLabelProps = {
   value?: string | number;
   labelText: string;
   inputType: string;
+  register?: UseFormRegisterReturn;
+  errorMessage?: string;
 };
 
 const InputWithLabel: React.FC<InputWithLabelProps> = ({
@@ -23,20 +26,30 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
   value,
   labelText = "label",
   inputPlaceholder = "input here..",
+  register,
+  errorMessage,
 }) => {
   return (
     <div className="flex flex-col gap-y-2">
       <Label htmlFor={labelFor} className={labelClassName}>
         {labelText}
       </Label>
-      <Input
-        value={value}
-        disabled={disabled}
-        type={inputType}
-        id={inputId}
-        placeholder={inputPlaceholder}
-        className={inputClassName}
-      />
+      <div className="relative">
+        <Input
+          value={value}
+          disabled={disabled}
+          type={inputType}
+          id={inputId}
+          placeholder={inputPlaceholder}
+          className={inputClassName}
+          {...register}
+        />
+        {errorMessage && (
+          <Text type="p" className="text-xs text-red-600 absolute left-0">
+            {errorMessage}
+          </Text>
+        )}
+      </div>
     </div>
   );
 };
