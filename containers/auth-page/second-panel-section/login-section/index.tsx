@@ -9,7 +9,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, loginSchemaType } from "@/schemas";
 
-const LoginSection = () => {
+type LoginSectionProps = {
+  onFormSubmit: (data: loginSchemaType) => void;
+};
+
+const LoginSection: React.FC<LoginSectionProps> = ({ onFormSubmit }) => {
+  // form
   const {
     register,
     handleSubmit,
@@ -19,7 +24,7 @@ const LoginSection = () => {
   });
 
   const onSubmit = (data: loginSchemaType) => {
-    console.log(data);
+    onFormSubmit(data);
   };
   return (
     <div className="mx-auto w-full max-w-sm space-y-6">

@@ -11,7 +11,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { registerSchema, registerSchemaType } from "@/schemas";
 
-const RegisterSection = () => {
+type RegisterSectionProps = {
+  onFormSubmit: (data: registerSchemaType) => void;
+};
+
+const RegisterSection: React.FC<RegisterSectionProps> = ({ onFormSubmit }) => {
   const {
     register,
     handleSubmit,
@@ -21,7 +25,7 @@ const RegisterSection = () => {
   });
 
   const onsubmit = (data: registerSchemaType) => {
-    console.log(data);
+    onFormSubmit(data);
   };
   return (
     <div className="mx-auto w-full max-w-sm space-y-6">

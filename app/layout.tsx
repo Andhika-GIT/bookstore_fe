@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import "@smastrom/react-rating/style.css";
 import "./globals.css";
 import { Rubik } from "next/font/google";
-
+import { Provider } from "./_provider";
 const rubik = Rubik({
   subsets: ["latin"],
 });
@@ -19,12 +19,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={rubik.className}>
-        <div className=" pt-10 px-5 lg:pt-24 lg:px-20 pb-10  bg-primary font-mona-sans">
-          {children}
-        </div>
-      </body>
-    </html>
+    <Provider>
+      <html lang="en">
+        <body className={rubik.className}>
+          <div className=" pt-10 px-5 lg:pt-24 lg:px-20 pb-10  bg-primary font-mona-sans">
+            {children}
+          </div>
+        </body>
+      </html>
+    </Provider>
   );
 }
