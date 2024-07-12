@@ -1,6 +1,6 @@
 import { Book } from "@/types";
 
-const BASE_URL = process.env.BASE_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const getBooks = async (page: number = 1): Promise<Book[] | undefined> => {
   try {
