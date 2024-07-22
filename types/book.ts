@@ -1,6 +1,6 @@
 export type Book = {
   id: string;
-  imgURL: string;
+  img_url: string;
   title: string;
   author: string;
   publisher: string;

@@ -8,7 +8,6 @@ export default async function Home() {
 
   return (
     <div className="space-y-11">
-      <HeaderSection />
       <HeroSection />
       <Suspense fallback={<p className="flex justify-center items-center">loading...</p>}>
         <BooksSection books={books} />

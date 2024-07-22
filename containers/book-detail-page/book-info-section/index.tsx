@@ -12,7 +12,7 @@ const BookInfoSection: React.FC<BookInfoSectionProps> = ({
   id,
   title,
   description,
-  imgURL,
+  img_url,
   author,
   publisher,
   rating,
@@ -25,7 +25,7 @@ const BookInfoSection: React.FC<BookInfoSectionProps> = ({
       className={`flex flex-col items-center md:items-stretch md:flex-row gap-7 col-span-1 ${className}`}
     >
       <Image
-        src={imgURL}
+        src={img_url}
         width={250}
         height={250}
         alt={`img-${title}-${id}`}

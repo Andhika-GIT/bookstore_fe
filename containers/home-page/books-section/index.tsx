@@ -22,7 +22,7 @@ const BooksSection: React.FC<BooksSectionProps> = ({ books }) => {
         {books?.map((book, index) => (
           <Link href={`/books/${book?.id}`} key={index}>
             <BookCard
-              imgURL={book?.imgURL}
+              imgURL={book?.img_url}
               title={book?.title}
               rating={book?.rating}
               imageHeightClassName="h-[200px]"
