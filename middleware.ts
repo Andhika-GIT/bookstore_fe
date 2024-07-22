@@ -1,11 +1,25 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
+import { verifyAuth } from "./lib/utilities/auth";
 
-export function middleware(request: NextRequest) {
-  // Logic middleware Anda di sini
-  return NextResponse.next();
+export async function middleware(request: NextRequest) {
+  const jwt_token = request.cookies.get("jwt")?.value;
+  const protectedPaths = ["/profile"];
+
+  const verifiedToken = jwt_token && (await verifyAuth(jwt_token));
+
+  if (!verifiedToken) {
+    if (protectedPaths?.some((path) => request.nextUrl.pathname.startsWith(path))) {
+      return NextResponse.redirect(new URL("/auth", request.url));
+    }
+  }
+
+  if (verifiedToken) {
+    if (request.nextUrl.pathname.startsWith("/auth")) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+  }
 }
 
 export const config = {
-  matcher: "/some-path/:path*",
+  matcher: ["/profile"],
 };
