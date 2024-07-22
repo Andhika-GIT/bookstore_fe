@@ -14,7 +14,7 @@ const SideCart: React.FC = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <button className="flex gap-1 items-center cursor-pointer">
+        <button className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300">
           <CiShoppingCart />
           <Text type="p">Items</Text>
         </button>

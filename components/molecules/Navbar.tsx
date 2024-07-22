@@ -55,7 +55,7 @@ const Navbar: React.FC = () => {
       <div className="flex gap-3 items-center">
         <Link
           href="/profile?section=profile"
-          className="flex gap-1 items-center cursor-pointer hover:bg-slate-100 p-1"
+          className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300"
         >
           <CiUser />
           <Text type="p">profile</Text>
