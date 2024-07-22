@@ -5,6 +5,18 @@ import { Separator } from "./separator";
 import { Card, CardContent, CardHeader, CardDescription, CardFooter, CardTitle } from "./card";
 import { Label } from "./label";
 import { Textarea } from "./textarea";
+import {
+  Sheet,
+  SheetPortal,
+  SheetOverlay,
+  SheetTrigger,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetFooter,
+  SheetTitle,
+  SheetDescription,
+} from "./sheet";
 
 export {
   Text,
@@ -19,4 +31,14 @@ export {
   CardFooter,
   CardHeader,
   CardTitle,
+  Sheet,
+  SheetPortal,
+  SheetOverlay,
+  SheetTrigger,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetFooter,
+  SheetTitle,
+  SheetDescription,
 };

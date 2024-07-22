@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { Input, Text } from "@/components/ui";
 import Link from "next/link";
-import { CiSearch, CiUser, CiShoppingCart } from "react-icons/ci";
+import { CiSearch, CiUser } from "react-icons/ci";
+import SideCart from "./SideCart";
 
 const Navbar: React.FC = () => {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -59,10 +60,7 @@ const Navbar: React.FC = () => {
           <CiUser />
           <Text type="p">profile</Text>
         </Link>
-        <div className="flex gap-1 items-center cursor-pointer hover:bg-slate-100 p-1">
-          <CiShoppingCart />
-          <Text type="p">Items</Text>
-        </div>
+        <SideCart />
       </div>
     </div>
   );
