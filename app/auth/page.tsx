@@ -15,7 +15,7 @@ const Auth: NextPage<AuthProps> = ({ searchParams: { session } }) => {
         <Card className="overflow-hidden rounded-lg border bg-background shadow-lg">
           <div className="flex flex-col md:flex-row h-full md:h-screen md:max-h-[700px] max-w-6xl">
             <FirstPanelSection />
-            <SecondPanelSection session={session} />
+            <SecondPanelSection session={session ? session : "login"} />
           </div>
         </Card>
       </div>

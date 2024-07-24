@@ -5,9 +5,14 @@ import { Input, Text } from "@/components/ui";
 import Link from "next/link";
 import { CiSearch, CiUser } from "react-icons/ci";
 import SideCart from "./SideCart";
+import { usePathname } from "next/navigation";
+import { CiShoppingCart } from "react-icons/ci";
 
 const Navbar: React.FC = () => {
+  const pathname = usePathname();
+  const displayComponent = !pathname.startsWith("/auth");
   const [showNavbar, setShowNavbar] = useState(false);
+  const [isShowingCart, setIsShowingCart] = useState<boolean>(false);
 
   useEffect(() => {
     let activityTimeout: NodeJS.Timeout;
@@ -39,30 +44,45 @@ const Navbar: React.FC = () => {
     };
   }, []);
 
+  console.log(isShowingCart);
+
   return (
-    <div
-      className={`fixed top-0 left-0 w-full bg-[#FAF9F6] shadow-md transition-transform transform ${
-        showNavbar ? "translate-y-0" : "-translate-y-full"
-      } flex justify-between items-center gap-4 px-6 py-4 z-50`}
-    >
-      <Text type="h3">Bookstore</Text>
-      <Input
-        baseClassname="w-full shadow-md"
-        type="text"
-        endIcon={CiSearch}
-        placeholder="Search..."
-      />
-      <div className="flex gap-3 items-center">
-        <Link
-          href="/profile?section=profile"
-          className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300"
+    <>
+      {displayComponent && (
+        <div
+          className={`fixed top-0 left-0 w-full bg-[#FAF9F6] shadow-md transition-transform transform ${
+            showNavbar ? "translate-y-0" : "-translate-y-full"
+          } flex justify-between items-center gap-4 px-6 py-4 z-50`}
         >
-          <CiUser />
-          <Text type="p">profile</Text>
-        </Link>
-        <SideCart />
-      </div>
-    </div>
+          <Text type="h3">Bookstore</Text>
+          <Input
+            baseClassname="w-full shadow-md"
+            type="text"
+            endIcon={CiSearch}
+            placeholder="Search..."
+          />
+          <div className="flex gap-3 items-center">
+            <Link
+              href="/profile?section=profile"
+              className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300"
+            >
+              <CiUser />
+              <Text type="p">profile</Text>
+            </Link>
+            <button className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300">
+              <CiShoppingCart />
+              <Text type="p" onClick={() => setIsShowingCart((prev) => !prev)}>
+                Items
+              </Text>
+            </button>
+          </div>
+
+          {isShowingCart && (
+            <SideCart isShowingCart={isShowingCart} setIsShowingCart={setIsShowingCart} />
+          )}
+        </div>
+      )}
+    </>
   );
 };
 

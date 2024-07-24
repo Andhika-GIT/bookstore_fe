@@ -1,30 +1,60 @@
-import React from "react";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui";
-import { CiShoppingCart } from "react-icons/ci";
+"use client";
+
+import React, { useEffect } from "react";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui";
 import { Text } from "@/components/ui";
 
-const SideCart: React.FC = () => {
+import { getCart } from "@/app/actions/cart";
+import { useQuery } from "@tanstack/react-query";
+import { ApiError, CartResponse } from "@/types";
+import { useRouter } from "next/navigation";
+import SideCartItem from "./SideCartItem";
+
+type SideCartProps = {
+  isShowingCart: boolean;
+  setIsShowingCart: (prev: boolean) => void;
+};
+
+const SideCart: React.FC<SideCartProps> = ({ isShowingCart, setIsShowingCart }) => {
+  const { data, isLoading, isError, error } = useQuery<CartResponse, ApiError>({
+    queryKey: ["cart-items"],
+    queryFn: getCart,
+    enabled: isShowingCart,
+  });
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isError) {
+      const apiError = error as ApiError;
+
+      if (apiError.errorData.code === 401) {
+        setIsShowingCart(false);
+        router.replace("/auth"); // Arahkan ke halaman login jika terjadi kesalahan 401
+      }
+    }
+  }, [isError, error, router, setIsShowingCart]);
+
   return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <button className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300">
-          <CiShoppingCart />
-          <Text type="p">Items</Text>
-        </button>
-      </SheetTrigger>
+    <Sheet open={isShowingCart} onOpenChange={setIsShowingCart}>
       <SheetContent side="right" className="bg-[#FAF9F6]">
         <SheetHeader>
           <SheetTitle>Shopping Cart</SheetTitle>
           <SheetDescription>Review your items</SheetDescription>
         </SheetHeader>
-        <div>{/* Cart items and functionality go here */}</div>
+        {isLoading && <Text className="p">Loading...</Text>}
+        {data && (
+          <div className="flex flex-col gap-y-5 py-6">
+            {data?.data?.items?.map((book, index) => (
+              <SideCartItem
+                key={index}
+                img_url={book?.img_url}
+                book_name={book?.title}
+                quantity={book?.quantity}
+              />
+            ))}
+          </div>
+        )}
       </SheetContent>
     </Sheet>
   );
