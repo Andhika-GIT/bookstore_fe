@@ -2,13 +2,13 @@
 
 import React, { useEffect } from "react";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui";
-import { Text } from "@/components/ui";
 
 import { getCart } from "@/app/actions/cart";
 import { useQuery } from "@tanstack/react-query";
 import { ApiError, CartResponse } from "@/types";
 import { useRouter } from "next/navigation";
 import SideCartItem from "./SideCartItem";
+import { SideCartSkeleton } from "../loader";
 
 type SideCartProps = {
   isShowingCart: boolean;
@@ -42,18 +42,25 @@ const SideCart: React.FC<SideCartProps> = ({ isShowingCart, setIsShowingCart }) 
           <SheetTitle>Shopping Cart</SheetTitle>
           <SheetDescription>Review your items</SheetDescription>
         </SheetHeader>
-        {isLoading && <Text className="p">Loading...</Text>}
-        {data && (
+        {isLoading ? (
           <div className="flex flex-col gap-y-5 py-6">
-            {data?.data?.items?.map((book, index) => (
-              <SideCartItem
-                key={index}
-                img_url={book?.img_url}
-                book_name={book?.title}
-                quantity={book?.quantity}
-              />
+            {[...Array(3)].map((_, index) => (
+              <SideCartSkeleton key={index} />
             ))}
           </div>
+        ) : (
+          data && (
+            <div className="flex flex-col gap-y-5 py-6">
+              {data.data.items.map((book, index) => (
+                <SideCartItem
+                  key={index}
+                  img_url={book.img_url}
+                  book_name={book.title}
+                  quantity={book.quantity}
+                />
+              ))}
+            </div>
+          )
         )}
       </SheetContent>
     </Sheet>

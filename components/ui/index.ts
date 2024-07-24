@@ -17,6 +17,7 @@ import {
   SheetTitle,
   SheetDescription,
 } from "./sheet";
+import { Skeleton } from "./skeleton";
 
 export {
   Text,
@@ -41,4 +42,5 @@ export {
   SheetFooter,
   SheetTitle,
   SheetDescription,
+  Skeleton,
 };

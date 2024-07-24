@@ -19,9 +19,13 @@ const SideCartItem: React.FC<SideCartItemProps> = ({ img_url, book_name, quantit
         className="shadow-xl"
       />
 
-      <div className="flex flex-col gap-y-2">
-        <Text className="text-2xl font-bold">{book_name}</Text>
-        <Text type="p">qty : {quantity}</Text>
+      <div className="flex flex-col gap-y-1">
+        <Text type="h6" className="font-bold">
+          {book_name}
+        </Text>
+        <Text type="p" cl>
+          qty : {quantity}
+        </Text>
       </div>
     </div>
   );
