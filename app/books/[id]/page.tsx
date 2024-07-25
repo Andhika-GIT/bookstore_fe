@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { reviews } from "@/lib/mock";
-import { BookInfoSection, RelatedSection, ReviewSection } from "@/containers";
+import { RelatedSection, ReviewSection, BookInfoSection } from "@/containers";
 import { books } from "@/lib/mock";
 import { getOneBook } from "@/app/actions/book";
 
@@ -9,8 +9,6 @@ const BookDetail = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
 
   const selectedBook = await getOneBook(parseInt(id));
-
-  console.log(selectedBook);
 
   if (!selectedBook) {
     return <div>not found</div>;
