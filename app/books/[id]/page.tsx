@@ -10,6 +10,8 @@ const BookDetail = async ({ params }: { params: { id: string } }) => {
 
   const selectedBook = await getOneBook(parseInt(id));
 
+  console.log(selectedBook);
+
   if (!selectedBook) {
     return <div>not found</div>;
   }

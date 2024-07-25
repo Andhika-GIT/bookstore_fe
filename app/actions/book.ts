@@ -17,7 +17,9 @@ export const getBooks = async (page: number = 1): Promise<Book[] | undefined> =>
 };
 
 export const getOneBook = async (id: number): Promise<Book | undefined> => {
-  const response = await fetch(`${BASE_URL}/book/${id}`);
+  const response = await fetch(`${BASE_URL}/book/${id}`, {
+    cache: "no-cache",
+  });
 
   const data = await response.json();
 

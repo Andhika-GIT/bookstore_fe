@@ -3,7 +3,7 @@ import { Book } from "@/types";
 export const books: Array<Book> = [
   {
     id: "GA3MP4XHFC",
-    imgURL: "/heart.jpg",
+    img_url: "/heart.jpg",
     title: "The heart",
     author: "Avery Devis",
     publisher: "Thomas Nelson INC",
@@ -15,7 +15,7 @@ export const books: Array<Book> = [
   },
   {
     id: "ZYCPN09YUH",
-    imgURL: "/romance.jpg",
+    img_url: "/romance.jpg",
     author: "Takehiro Kanegi",
     publisher: "Thomas Nelson INC",
     description:
@@ -27,7 +27,7 @@ export const books: Array<Book> = [
   },
   {
     id: "C0CM5MDJ4M",
-    imgURL: "/stay-with-me.jpg",
+    img_url: "/stay-with-me.jpg",
     author: "Claudia Wilson",
     publisher: "Thomas Nelson INC",
     description:
@@ -39,7 +39,7 @@ export const books: Array<Book> = [
   },
   {
     id: "7IVTUXC758",
-    imgURL: "/time.jpg",
+    img_url: "/time.jpg",
     author: "Olivia Wilson",
     publisher: "Thomas Nelson INC",
     description:
@@ -51,7 +51,7 @@ export const books: Array<Book> = [
   },
   {
     id: "euNFgWZ2KMhLYAIcDCIO",
-    imgURL: "/putih-langit.jpg",
+    img_url: "/putih-langit.jpg",
     author: "Noell Morisson",
     publisher: "Thomas Nelson INC",
     description:

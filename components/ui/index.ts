@@ -18,6 +18,8 @@ import {
   SheetDescription,
 } from "./sheet";
 import { Skeleton } from "./skeleton";
+import { toast, useToast } from "./use-toast";
+import { Toaster } from "./toaster";
 
 export {
   Text,
@@ -43,4 +45,7 @@ export {
   SheetTitle,
   SheetDescription,
   Skeleton,
+  toast,
+  useToast,
+  Toaster,
 };

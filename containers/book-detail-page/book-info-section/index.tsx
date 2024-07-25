@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Book } from "@/types";
 import { Button, Text } from "@/components/ui";
 import { Rating } from "@smastrom/react-rating";
+import AddToCartButton from "./add-to-char-button";
 
 type BookInfoSectionProps = Book & {
   className?: string;
@@ -57,7 +58,8 @@ const BookInfoSection: React.FC<BookInfoSectionProps> = ({
             <Text type="p">{total_page}</Text>
           </div>
         </div>
-        <Button variant="light_green">Add to chart</Button>
+
+        <AddToCartButton book_id={id} />
       </div>
     </div>
   );

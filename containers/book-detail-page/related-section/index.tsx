@@ -22,7 +22,7 @@ const RelatedSection: React.FC<RelatedSectionProps> = ({ books, className }) => 
             .map((book, index) => (
               <BookCard
                 key={index}
-                imgURL={book?.imgURL}
+                imgURL={book?.img_url}
                 title={book?.title}
                 rating={book?.rating}
                 imageHeightClassName="h-[90px]"

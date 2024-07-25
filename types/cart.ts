@@ -13,3 +13,8 @@ export type CartResponse = {
     items: CartItem[];
   };
 };
+
+export type CreateCartRequest = {
+  book_id: number;
+  quantity: number;
+};
