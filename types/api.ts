@@ -7,3 +7,9 @@ export type ApiError = {
   stack?: string;
   message: string;
 };
+
+export type ApiResponse<T> = {
+  code: number;
+  message: string;
+  data?: T;
+};

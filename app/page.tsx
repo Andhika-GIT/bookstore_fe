@@ -1,7 +1,6 @@
-import { HeaderSection, HeroSection, BooksSection } from "@/containers";
+import { HeroSection, BooksSection } from "@/containers";
 // import { books } from "@/lib/mock";
 import { getBooks } from "./actions/book";
-import { Suspense } from "react";
 
 export default async function Home() {
   const books = await getBooks();
@@ -9,7 +8,7 @@ export default async function Home() {
   return (
     <div className="space-y-11">
       <HeroSection />
-      <BooksSection books={books} />
+      <BooksSection books={books?.data} />
     </div>
   );
 }

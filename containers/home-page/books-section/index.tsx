@@ -4,7 +4,7 @@ import { Text } from "@/components/ui";
 import { BookCard } from "@/components/molecules";
 import { Book } from "@/types";
 import Link from "next/link";
-import BookLoadMoreSkeleton from "@/components/loader/BookLoadMoreSkeleton";
+import { BookLoadMore } from "@/components/molecules";
 
 type BooksSectionProps = {
   books: Array<Book> | undefined;
@@ -18,7 +18,7 @@ const BooksSection: React.FC<BooksSectionProps> = ({ books }) => {
         <Text type="h4">Most Popular</Text>
         <div className="flex-grow border-t-4 border-gray-400"></div>
       </div>
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-10 auto-rows-max">
+      <div className="grid grid-cols-2 xl:grid-cols-4 gap-x-8 gap-y-10 auto-rows-max">
         {books?.map((book, index) => (
           <Link href={`/books/${book.id}`} key={index}>
             <BookCard
@@ -31,7 +31,7 @@ const BooksSection: React.FC<BooksSectionProps> = ({ books }) => {
           </Link>
         ))}
       </div>
-      <BookLoadMoreSkeleton />
+      <BookLoadMore />
     </div>
   );
 };

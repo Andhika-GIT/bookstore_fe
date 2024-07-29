@@ -44,8 +44,6 @@ const Navbar: React.FC = () => {
     };
   }, []);
 
-  console.log(isShowingCart);
-
   return (
     <>
       {displayComponent && (

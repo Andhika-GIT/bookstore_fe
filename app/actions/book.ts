@@ -1,19 +1,33 @@
-import { Book } from "@/types";
+import { ApiResponse, Book } from "@/types";
 import { resolve } from "path";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 // Function to simulate a delay
 
-export const getBooks = async (page: number = 1): Promise<Book[] | undefined> => {
+export const getBooks = async (
+  pageParam: number = 1,
+): Promise<
+  | {
+      data: Book[] | undefined;
+      nextPage: number | null | undefined;
+    }
+  | undefined
+> => {
   try {
-    const response = await fetch(`${BASE_URL}/book?page=${page}`, {
+    const response = await fetch(`${BASE_URL}/book?page=${pageParam}`, {
       cache: "no-cache",
     });
 
-    const data = await response.json();
+    const result: ApiResponse<{
+      books: Book[];
+      nextPage: number;
+    }> = await response.json();
 
-    return data;
+    return {
+      data: result?.data?.books,
+      nextPage: result?.data?.nextPage,
+    };
   } catch (e) {
     console.log(e);
   }
