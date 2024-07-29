@@ -1,5 +1,4 @@
 import React from "react";
-import { Card, Text, CardContent } from "../ui";
 import { Rating } from "@smastrom/react-rating";
 import Image from "next/image";
 
@@ -8,51 +7,45 @@ type BookCardProps = {
   title: string;
   rating: string;
   ratingSize?: number;
+  displayRating?: boolean;
   cardClassName?: string;
-  imageWidthClassName?: string;
-  imageHeightClassName: string;
+  imageClassName?: string;
   titleClassName?: string;
   tagsClassName?: string;
-  displayRating?: boolean;
 };
 
 const BookCard: React.FC<BookCardProps> = ({
   imgURL,
   title,
   rating,
-  ratingSize,
-  cardClassName = "w-full",
-  imageWidthClassName = "w-full",
-  imageHeightClassName = "h-50",
-  tagsClassName = "",
-  titleClassName = "",
+  ratingSize = 100,
   displayRating = true,
+  cardClassName = "",
+  imageClassName = "",
+  titleClassName = "",
+  tagsClassName = "",
 }) => {
   return (
-    <Card className={`bg-white shadow-l ${cardClassName}`}>
-      <CardContent className="w-full space-y-6 px-3 py-3">
-        <div className={`relative ${imageWidthClassName} ${imageHeightClassName}`}>
-          <Image
-            src={imgURL}
-            alt={`book-${title}`}
-            layout="fill"
-            objectFit="cover"
-            className="rounded-lg"
-          />
-        </div>
-        <div className="flex flex-col items-center space-y-2">
-          <Text type="p" className={`font-semibold ${titleClassName}`}>
-            {title}
-          </Text>
-          <Text className={`text-gray-400 ${tagsClassName}`} type="p">
-            model, lifestyle
-          </Text>
-          {displayRating && (
-            <Rating readOnly value={parseFloat(rating)} style={{ maxWidth: ratingSize || 100 }} />
-          )}
-        </div>
-      </CardContent>
-    </Card>
+    <div
+      className={`rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm p-2 flex flex-col items-center ${cardClassName}`}
+    >
+      <div className="relative w-full pb-[150%] overflow-hidden rounded-lg">
+        <Image
+          src={imgURL}
+          alt={`book-${title}`}
+          layout="fill"
+          objectFit="cover"
+          className={`rounded-lg ${imageClassName}`}
+        />
+      </div>
+      <div className="flex flex-col items-center space-y-2 mt-4">
+        <p className={`font-semibold text-center ${titleClassName}`}>{title}</p>
+        <p className={`text-gray-400 text-center ${tagsClassName}`}>model, lifestyle</p>
+        {displayRating && (
+          <Rating readOnly value={parseFloat(rating)} style={{ maxWidth: ratingSize }} />
+        )}
+      </div>
+    </div>
   );
 };
 

@@ -13,7 +13,7 @@ type BooksSectionProps = {
 const BooksSection: React.FC<BooksSectionProps> = ({ books }) => {
   return (
     <div className="space-y-5">
-      <div className="flex space-x-11 items-center justify-center">
+      <div className="flex space-x-5 md:space-x-11 items-center justify-center">
         <div className="flex-grow border-t-4 border-gray-400"></div>
         <Text type="h4">Most Popular</Text>
         <div className="flex-grow border-t-4 border-gray-400"></div>
@@ -25,8 +25,8 @@ const BooksSection: React.FC<BooksSectionProps> = ({ books }) => {
               imgURL={book?.img_url}
               title={book?.title}
               rating={book?.rating}
-              imageHeightClassName="h-[200px]"
-              cardClassName="w-[270px] cursor-pointer"
+              ratingSize={100}
+              displayRating={true}
             />
           </Link>
         ))}

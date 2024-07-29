@@ -15,13 +15,15 @@ const HeroSection: React.FC = () => {
           className="w-full h-full rounded-md"
         />
         <div className="absolute inset-0 bg-gray-900 opacity-60 rounded-md"></div>
-        <div className="absolute inset-0 flex items-center px-16 justify-between">
-          <div className="space-y-6">
+        <div className="absolute inset-0 flex items-center justify-center lg:justify-between px-4 lg:px-16">
+          <div className="space-y-4 lg:space-y-6 text-center lg:text-left">
             <div>
-              <h2 className="text-white text-8xl font-bold">Summer Sale</h2>
-              <h2 className="text-white text-3xl font-bold">Up to 30 % off best seller</h2>
+              <h2 className="text-white text-4xl lg:text-8xl font-bold">Summer Sale</h2>
+              <h2 className="text-white text-xl lg:text-3xl font-bold">
+                Up to 30% off best seller
+              </h2>
             </div>
-            <Button variant="secondary" className="w-min">
+            <Button variant="secondary" className="w-full lg:w-min">
               Buy Now
             </Button>
           </div>

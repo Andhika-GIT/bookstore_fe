@@ -25,8 +25,7 @@ const RelatedSection: React.FC<RelatedSectionProps> = ({ books, className }) => 
                 imgURL={book?.img_url}
                 title={book?.title}
                 rating={book?.rating}
-                imageHeightClassName="h-[90px]"
-                cardClassName="w-[135px]"
+                cardClassName="md:w-[135px]"
                 titleClassName="text-sm"
                 tagsClassName="text-xs"
                 displayRating={false}
