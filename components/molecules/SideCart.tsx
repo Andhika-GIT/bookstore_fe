@@ -16,7 +16,12 @@ type SideCartProps = {
 };
 
 const SideCart: React.FC<SideCartProps> = ({ isShowingCart, setIsShowingCart }) => {
-  const { data, isLoading, isError, error } = useQuery<CartResponse, ApiError>({
+  const {
+    data: cartItems,
+    isLoading,
+    isError,
+    error,
+  } = useQuery<CartResponse, ApiError>({
     queryKey: ["cart-items"],
     queryFn: getCart,
     enabled: isShowingCart,
@@ -49,9 +54,9 @@ const SideCart: React.FC<SideCartProps> = ({ isShowingCart, setIsShowingCart }) 
             ))}
           </div>
         ) : (
-          data && (
+          cartItems && (
             <div className="flex flex-col gap-y-5 py-6">
-              {data.data.items.map((book, index) => (
+              {cartItems?.data?.items?.map((book, index) => (
                 <SideCartItem
                   key={index}
                   img_url={book.img_url}
