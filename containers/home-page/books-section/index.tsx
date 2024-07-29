@@ -1,10 +1,10 @@
+// components/BooksSection.tsx
 import React from "react";
-import { Text, Card, CardContent, CardFooter, CardHeader } from "@/components/ui";
+import { Text } from "@/components/ui";
 import { BookCard } from "@/components/molecules";
 import { Book } from "@/types";
-import { Rating } from "@smastrom/react-rating";
-import Image from "next/image";
 import Link from "next/link";
+import BookLoadMoreSkeleton from "@/components/loader/BookLoadMoreSkeleton";
 
 type BooksSectionProps = {
   books: Array<Book> | undefined;
@@ -20,17 +20,18 @@ const BooksSection: React.FC<BooksSectionProps> = ({ books }) => {
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-10 auto-rows-max">
         {books?.map((book, index) => (
-          <Link href={`/books/${book?.id}`} key={index}>
+          <Link href={`/books/${book.id}`} key={index}>
             <BookCard
-              imgURL={book?.img_url}
-              title={book?.title}
-              rating={book?.rating}
+              imgURL={book.img_url}
+              title={book.title}
+              rating={book.rating}
               ratingSize={100}
               displayRating={true}
             />
           </Link>
         ))}
       </div>
+      <BookLoadMoreSkeleton />
     </div>
   );
 };
