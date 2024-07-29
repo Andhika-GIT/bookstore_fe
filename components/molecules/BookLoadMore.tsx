@@ -28,7 +28,7 @@ const BookLoadMore: React.FC = () => {
   const books = data?.pages?.flatMap((page) => page?.data || []);
 
   return (
-    <div>
+    <>
       <div className="grid grid-cols-2 xl:grid-cols-4 gap-x-8 gap-y-10 auto-rows-max">
         {books?.map((book, index) => (
           <Link href={`/books/${book.id}`} key={index}>
@@ -45,7 +45,7 @@ const BookLoadMore: React.FC = () => {
 
       {isFetchingNextPage && <BookLoadMoreSkeleton />}
       <div ref={ref} />
-    </div>
+    </>
   );
 };
 

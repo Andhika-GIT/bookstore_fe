@@ -4,7 +4,7 @@ import { Skeleton } from "@/components/ui";
 const BookCardSkeleton: React.FC = () => {
   return (
     <div className="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm p-2 flex flex-col items-center">
-      <div className="w-full h-56 overflow-hidden rounded-lg">
+      <div className="w-full h-96 overflow-hidden rounded-lg">
         <Skeleton className="w-full h-full bg-slate-400" />
       </div>
       <div className="flex flex-col items-center space-y-2 mt-4">
