@@ -1,5 +1,5 @@
 import React from "react";
-import { useRouter } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import { reviews } from "@/lib/mock";
 import { RelatedSection, ReviewSection, BookInfoSection } from "@/containers";
 import { books } from "@/lib/mock";
@@ -11,8 +11,9 @@ const BookDetail = async ({ params }: { params: { id: string } }) => {
   const selectedBook = await getOneBook(parseInt(id));
 
   if (!selectedBook) {
-    return <div>not found</div>;
+    notFound();
   }
+
   return (
     <div className="grid grid-cols-3 gap-x-14 gap-y-10">
       <BookInfoSection {...selectedBook} className="col-span-3 lg:col-span-2" />

@@ -38,7 +38,7 @@ export const getOneBook = async (id: number): Promise<Book | undefined> => {
     cache: "no-cache",
   });
 
-  const data = await response.json();
+  const result: ApiResponse<Book> = await response.json();
 
-  return data;
+  return result?.data;
 };
