@@ -34,3 +34,5 @@ export const addCart = async (data: CreateCartRequest): Promise<string> => {
     throw error;
   }
 };
+
+export const deleteCart = async () => {};

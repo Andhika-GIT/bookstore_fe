@@ -27,7 +27,7 @@ export default function RootLayout({
         <body className={rubik.className}>
           <Toaster />
           <Navbar />
-          <div className=" pt-10 px-5 lg:pt-24 lg:px-20 pb-10  bg-primary font-mona-sans">
+          <div className="pt-10 px-5 lg:pt-24 lg:px-20 pb-10  bg-primary font-mona-sans">
             {children}
           </div>
         </body>
