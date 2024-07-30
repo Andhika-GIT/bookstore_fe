@@ -52,7 +52,9 @@ const Navbar: React.FC = () => {
             showNavbar ? "translate-y-0" : "-translate-y-full"
           } flex justify-between items-center gap-4 px-6 py-4 z-50`}
         >
-          <Text type="h3">Bookstore</Text>
+          <Link href="/">
+            <Text type="h3">Bookstore</Text>
+          </Link>
           <Input
             baseClassname="w-full shadow-md"
             type="text"

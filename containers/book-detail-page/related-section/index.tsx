@@ -16,7 +16,7 @@ const RelatedSection: React.FC<RelatedSectionProps> = ({ books, className }) => 
           Related Books
         </Text>
         <Text type="p">Some items that you might be interested in</Text>
-        <div className="grid justify-items-center grid-cols-3 gap-x-3 gap-y-2 w-full auto-cols-max">
+        <div className="grid justify-items-center grid-cols-3 gap-x-2 lg:gap-x-3 gap-y-2 w-full auto-cols-max max-w">
           {books
             ?.slice(0, 3)
             .map((book, index) => (
@@ -25,7 +25,7 @@ const RelatedSection: React.FC<RelatedSectionProps> = ({ books, className }) => 
                 imgURL={book?.img_url}
                 title={book?.title}
                 rating={book?.rating}
-                cardClassName="md:w-[135px]"
+                cardClassName="lg:w-[100px] md:max-w-[120px] xl:w-[135px] w-[150px] "
                 titleClassName="text-sm"
                 tagsClassName="text-xs"
                 displayRating={false}

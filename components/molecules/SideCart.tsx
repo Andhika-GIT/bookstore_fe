@@ -1,7 +1,14 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui";
+import {
+  Button,
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui";
 
 import { getCart } from "@/app/actions/cart";
 import { useQuery } from "@tanstack/react-query";
@@ -9,6 +16,7 @@ import { ApiError, CartResponse } from "@/types";
 import { useRouter } from "next/navigation";
 import SideCartItem from "./SideCartItem";
 import { SideCartSkeleton } from "../loader";
+import Link from "next/link";
 
 type SideCartProps = {
   isShowingCart: boolean;
@@ -47,26 +55,33 @@ const SideCart: React.FC<SideCartProps> = ({ isShowingCart, setIsShowingCart }) 
           <SheetTitle>Shopping Cart</SheetTitle>
           <SheetDescription>Review your items</SheetDescription>
         </SheetHeader>
-        {isLoading ? (
-          <div className="flex flex-col gap-y-5 py-6">
-            {[...Array(3)].map((_, index) => (
-              <SideCartSkeleton key={index} />
-            ))}
-          </div>
-        ) : (
-          cartItems && (
+        <div className="flex flex-col justify-between gap-8 w-full">
+          {isLoading ? (
             <div className="flex flex-col gap-y-5 py-6">
-              {cartItems?.data?.items?.map((book, index) => (
-                <SideCartItem
-                  key={index}
-                  img_url={book.img_url}
-                  book_name={book.title}
-                  quantity={book.quantity}
-                />
+              {[...Array(3)].map((_, index) => (
+                <SideCartSkeleton key={index} />
               ))}
             </div>
-          )
-        )}
+          ) : (
+            cartItems && (
+              <div className="flex flex-col gap-y-5 py-6">
+                {cartItems?.data?.items?.map((book, index) => (
+                  <SideCartItem
+                    key={index}
+                    img_url={book.img_url}
+                    book_name={book.title}
+                    quantity={book.quantity}
+                  />
+                ))}
+              </div>
+            )
+          )}
+          <Link href="/carts">
+            <Button variant="light_green" className="w-full">
+              View Cart
+            </Button>
+          </Link>
+        </div>
       </SheetContent>
     </Sheet>
   );
