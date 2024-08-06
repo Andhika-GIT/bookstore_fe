@@ -1,8 +1,10 @@
 export type CartItem = {
+  cart_items_id: number;
   book_id: number;
   title: string;
   img_url: string;
   quantity: number;
+  book_quantity: number;
   price: number;
 };
 

@@ -11,12 +11,14 @@ import {
 } from "@/components/ui";
 
 import { getCart } from "@/app/actions/cart";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ApiError, CartResponse } from "@/types";
 import { useRouter } from "next/navigation";
 import SideCartItem from "./SideCartItem";
 import { SideCartSkeleton } from "../loader";
 import Link from "next/link";
+import { decreaseQuantity, increaseQuantity ,deleteCartItems } from "@/app/actions/cart";
+import { useToast } from "@/components/ui";
 
 type SideCartProps = {
   isShowingCart: boolean;
@@ -24,6 +26,7 @@ type SideCartProps = {
 };
 
 const SideCart: React.FC<SideCartProps> = ({ isShowingCart, setIsShowingCart }) => {
+  const {toast} = useToast()
   const {
     data: cartItems,
     isLoading,
@@ -36,6 +39,45 @@ const SideCart: React.FC<SideCartProps> = ({ isShowingCart, setIsShowingCart }) 
   });
 
   const router = useRouter();
+  const queryClient = useQueryClient()
+
+  const {mutate, isPending} = useMutation({
+    mutationFn: (data: {type: string, cart_items_id: number}) => {
+      const {type, cart_items_id} = data
+
+      if(type === "increase"){
+        return increaseQuantity(cart_items_id, 1)
+      }
+      if(type === "decrease"){
+        return decreaseQuantity(cart_items_id)
+      } 
+      
+      if(type === "delete") {
+        return deleteCartItems(cart_items_id)
+      }
+
+        return Promise.reject(new Error("Invalid session type or form data"));
+      
+    }, onError: (error: ApiError) => {
+      if (String(error?.errorData?.code).startsWith('4')) {
+        toast({
+          variant: "destructive",
+          description: error?.errorData?.message,
+          duration: 3000,
+        });
+      } else {
+        toast({
+          variant: "destructive",
+          description: "there's something wrong, please try again later",
+          duration: 3000,
+        });
+      }
+    }, onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ["cart-items"],
+      });
+    }
+  })
 
   useEffect(() => {
     if (isError) {
@@ -71,7 +113,12 @@ const SideCart: React.FC<SideCartProps> = ({ isShowingCart, setIsShowingCart }) 
                     img_url={book.img_url}
                     book_name={book.title}
                     quantity={book.quantity}
+                    book_quantity={book?.book_quantity}
                     price={book?.price}
+                    onProgress={isPending}
+                    cart_items_id={book?.cart_items_id}
+                    onUpdate={(data) => mutate(data)}
+
                   />
                 ))}
               </div>
