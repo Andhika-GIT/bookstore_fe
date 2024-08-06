@@ -26,12 +26,20 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ book_id }) => {
         duration: 2000,
       });
     },
-    onError: () => {
-      toast({
-        variant: "destructive",
-        description: "there's something wrong, please try again later",
-        duration: 3000,
-      });
+    onError: (error: ApiError) => {
+      if (String(error?.errorData?.code).startsWith('4')) {
+        toast({
+          variant: "destructive",
+          description: error?.errorData?.message,
+          duration: 3000,
+        });
+      } else {
+        toast({
+          variant: "destructive",
+          description: "there's something wrong, please try again later",
+          duration: 3000,
+        });
+      }
     },
   });
 

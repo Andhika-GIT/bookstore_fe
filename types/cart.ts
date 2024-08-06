@@ -13,6 +13,8 @@ export type CartResponse = {
   message: string;
   data: {
     cart_id: number;
+    total_price: number;
+    total_items: number;
     items: CartItem[];
   } | null;
 };

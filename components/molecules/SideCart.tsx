@@ -14,7 +14,7 @@ import { getCart } from "@/app/actions/cart";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ApiError, CartResponse } from "@/types";
 import { useRouter } from "next/navigation";
-import SideCartItem from "./SideCartItem";
+import CartItem from "./CartItem";
 import { SideCartSkeleton } from "../loader";
 import Link from "next/link";
 import { decreaseQuantity, increaseQuantity ,deleteCartItems } from "@/app/actions/cart";
@@ -92,7 +92,7 @@ const SideCart: React.FC<SideCartProps> = ({ isShowingCart, setIsShowingCart }) 
 
   return (
     <Sheet open={isShowingCart} onOpenChange={setIsShowingCart}>
-      <SheetContent side="right" className="bg-[#FAF9F6] px-4 md:max-w-lg">
+      <SheetContent side="right" className="bg-[#FAF9F6] px-4 md:max-w-lg overflow-scroll">
         <SheetHeader>
           <SheetTitle>Shopping Cart</SheetTitle>
           <SheetDescription>Review your items</SheetDescription>
@@ -108,7 +108,7 @@ const SideCart: React.FC<SideCartProps> = ({ isShowingCart, setIsShowingCart }) 
             cartItems && (
               <div className="flex flex-col gap-y-5 py-6">
                 {cartItems?.data?.items?.map((book, index) => (
-                  <SideCartItem
+                  <CartItem
                     key={index}
                     img_url={book.img_url}
                     book_name={book.title}

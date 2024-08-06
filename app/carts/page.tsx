@@ -4,8 +4,8 @@ import React from "react";
 
 const Carts = async () => {
   return (
-    <div className="container mx-auto p-4 h-screen">
-      <Text type="h2" className="mb-4">
+    <div className="container mx-auto p-4 h-full">
+      <Text type="p" className="mb-4 text-xl md:text-5xl font-bold">
         Your Shopping Cart
       </Text>
       <CartItemSection />
