@@ -3,6 +3,7 @@ export type CartItem = {
   title: string;
   img_url: string;
   quantity: number;
+  price: number;
 };
 
 export type CartResponse = {
@@ -11,7 +12,7 @@ export type CartResponse = {
   data: {
     cart_id: number;
     items: CartItem[];
-  };
+  } | null;
 };
 
 export type CreateCartRequest = {

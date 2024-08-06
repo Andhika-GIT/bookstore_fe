@@ -8,4 +8,5 @@ export type Book = {
   rating: string;
   total_page: number;
   publication_date: string;
+  genres: string;
 };

@@ -50,7 +50,7 @@ const SideCart: React.FC<SideCartProps> = ({ isShowingCart, setIsShowingCart }) 
 
   return (
     <Sheet open={isShowingCart} onOpenChange={setIsShowingCart}>
-      <SheetContent side="right" className="bg-[#FAF9F6]">
+      <SheetContent side="right" className="bg-[#FAF9F6] px-4 md:max-w-lg">
         <SheetHeader>
           <SheetTitle>Shopping Cart</SheetTitle>
           <SheetDescription>Review your items</SheetDescription>
@@ -71,13 +71,14 @@ const SideCart: React.FC<SideCartProps> = ({ isShowingCart, setIsShowingCart }) 
                     img_url={book.img_url}
                     book_name={book.title}
                     quantity={book.quantity}
+                    price={book?.price}
                   />
                 ))}
               </div>
             )
           )}
-          <Link href="/carts">
-            <Button variant="light_green" className="w-full">
+          <Link href={isError || isLoading || (cartItems?.data?.items?.length || 0) < 1 ? '#' : '/carts'}>
+            <Button variant="light_green" className="w-full" disabled={isError || isLoading || (cartItems?.data?.items?.length || 0) < 1 }>
               View Cart
             </Button>
           </Link>

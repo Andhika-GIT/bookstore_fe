@@ -20,7 +20,10 @@ const BookInfoSection: React.FC<BookInfoSectionProps> = ({
   total_page,
   publication_date,
   className,
+  genres
+
 }) => {
+
   return (
     <div
       className={`flex flex-col items-center md:items-stretch md:flex-row gap-7 col-span-1 ${className}`}
@@ -43,19 +46,23 @@ const BookInfoSection: React.FC<BookInfoSectionProps> = ({
             </div>
           </div>
           <Text type="p">{description}</Text>
-          <div className="max-w-96 grid grid-cols-2 justify-items-start gap-x-8 gap-y-2">
+          <div className="max-w-120 grid grid-cols-2 justify-items-start gap-x-4 gap-y-2">
             <Text type="p" className="font-bold">
               PUBLLISHER
-            </Text>
-            <Text type="p">{publisher}</Text>
+          </Text>
+            <Text type="p">: {publisher}</Text>
             <Text type="p" className="font-bold">
               PUBLICATION_DATE
             </Text>
-            <Text type="p">{publication_date}</Text>
+            <Text type="p">: {publication_date}</Text>
             <Text type="p" className="font-bold">
               PAGES
             </Text>
-            <Text type="p">{total_page}</Text>
+            <Text type="p">: {total_page}</Text>
+            <Text type="p" className="font-bold">
+              GENRES
+            </Text>
+            <Text type="p">: {genres}</Text>
           </div>
         </div>
 
