@@ -24,6 +24,13 @@ export default function RootLayout({
   return (
     <TanstackProvider>
       <html lang="en">
+        <head>
+          <script
+            type="text/javascript"
+            src="https://app.sandbox.midtrans.com/snap/snap.js"
+            data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_SANDBOX_CLIENT_KEY}
+          ></script>
+        </head>
         <body className={rubik.className}>
           <Toaster />
           <Navbar />
