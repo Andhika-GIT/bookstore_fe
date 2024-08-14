@@ -7,11 +7,11 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { ApiError, CartResponse, TransactionPayload } from "@/types";
 import { Text, Button, useToast } from "@/components/ui";
 
-import { decreaseQuantity, increaseQuantity ,deleteCartItems } from "@/app/actions/cart";
+import { decreaseQuantity, increaseQuantity, deleteCartItems } from "@/app/actions/cart";
 import { getTransactionToken } from "@/app/actions/transaction";
 
 const CartItemSection: React.FC = () => {
-  const {toast} = useToast()
+  const { toast } = useToast();
 
   const {
     data: cartItems,
@@ -23,28 +23,28 @@ const CartItemSection: React.FC = () => {
     queryFn: getCart,
   });
 
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   // ---- cart items mutation ---- //
-  const {mutate: manipulateCart, isPending} = useMutation({
-    mutationFn: (data: {type: string, cart_items_id: number}) => {
-      const {type, cart_items_id} = data
+  const { mutate: manipulateCart, isPending } = useMutation({
+    mutationFn: (data: { type: string; cart_items_id: number }) => {
+      const { type, cart_items_id } = data;
 
-      if(type === "increase"){
-        return increaseQuantity(cart_items_id, 1)
+      if (type === "increase") {
+        return increaseQuantity(cart_items_id, 1);
       }
-      if(type === "decrease"){
-        return decreaseQuantity(cart_items_id)
-      } 
-      
-      if(type === "delete") {
-        return deleteCartItems(cart_items_id)
+      if (type === "decrease") {
+        return decreaseQuantity(cart_items_id);
       }
 
-        return Promise.reject(new Error("Invalid session type or form data"));
-      
-    }, onError: (error: ApiError) => {
-      if (String(error?.errorData?.code).startsWith('4')) {
+      if (type === "delete") {
+        return deleteCartItems(cart_items_id);
+      }
+
+      return Promise.reject(new Error("Invalid session type or form data"));
+    },
+    onError: (error: ApiError) => {
+      if (String(error?.errorData?.code).startsWith("4")) {
         toast({
           variant: "destructive",
           description: error?.errorData?.message,
@@ -57,30 +57,43 @@ const CartItemSection: React.FC = () => {
           duration: 3000,
         });
       }
-    }, onSuccess: async () => {
+    },
+    onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: ["cart-items"],
       });
-    }
-  })
+    },
+  });
 
   // ---- create transaction mutation ---- //
-  const {mutate: sendTransactionPayload} = useMutation({
+  const { mutate: sendTransactionPayload } = useMutation({
     mutationFn: (data: TransactionPayload) => {
-      return getTransactionToken(data)
+      return getTransactionToken(data);
     },
-    onError: (error:ApiError) => {
-      console.log(error)
-    }, onSuccess: (response) => {
-      window.snap.pay(response.data.transactionToken), {
-        onSuccess: function(result){console.log('success');console.log(result);},
-        onPending: function(result){console.log('pending');console.log(result);},
-        onError: function(result){console.log('error');console.log(result);},
-        onClose: function(){console.log('customer closed the popup without finishing the payment');}
-
-    }
-  }
-  })
+    onError: (error: ApiError) => {
+      console.log(error);
+    },
+    onSuccess: (response) => {
+      window.snap.pay(response.data.transactionToken),
+        {
+          onSuccess: function (result) {
+            console.log("success");
+            console.log(result);
+          },
+          onPending: function (result) {
+            console.log("pending");
+            console.log(result);
+          },
+          onError: function (result) {
+            console.log("error");
+            console.log(result);
+          },
+          onClose: function () {
+            console.log("customer closed the popup without finishing the payment");
+          },
+        };
+    },
+  });
 
   if (isLoading) {
     return <Text>Loading...</Text>;
@@ -92,34 +105,44 @@ const CartItemSection: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-y-3">
-    <div className="flex justify-between items-center">
-      <div className="flex gap-x-2 items-center">
-          <Text type="p" className="text-xs md:text-base">Total Items : {cartItems?.data?.total_items}</Text>
-          <Text type="p" className="font-bold text-xs md:text-base">Total Price : {cartItems?.data?.total_price}</Text>
+      <div className="flex justify-between items-center">
+        <div className="flex gap-x-2 items-center">
+          <Text type="p" className="text-xs md:text-base">
+            Total Items : {cartItems?.data?.total_items}
+          </Text>
+          <Text type="p" className="font-bold text-xs md:text-base">
+            Total Price : {cartItems?.data?.total_price}
+          </Text>
+        </div>
+
+        <Button
+          variant="light_green"
+          className="p-2 text-xs md:p-3 md:text-xl"
+          onClick={() =>
+            sendTransactionPayload({
+              total_price: cartItems?.data?.total_price,
+              items: cartItems?.data?.items,
+            })
+          }
+        >
+          Checkout
+        </Button>
       </div>
-       
-      <Button variant="light_green" className="p-2 text-xs md:p-3 md:text-xl" onClick={() => sendTransactionPayload({
-        total_price: cartItems?.data?.total_price,
-        items: cartItems?.data?.items
-      })}>Checkout</Button>
-
-    </div>
-    <div className="flex flex-col gap-4">
-      {cartItems?.data?.items?.map((item, index) => (
-       <CartItem
-       key={index}
-       img_url={item.img_url}
-       book_name={item.title}
-       quantity={item.quantity}
-       book_quantity={item?.book_quantity}
-       price={item?.price}
-       onProgress={isPending}
-       cart_items_id={item?.cart_items_id}
-       onUpdate={(data) => manipulateCart(data)}
-
-     />
-      ))}
-    </div>
+      <div className="flex flex-col gap-4">
+        {cartItems?.data?.items?.map((item, index) => (
+          <CartItem
+            key={index}
+            img_url={item.img_url}
+            book_name={item.title}
+            quantity={item.quantity}
+            book_quantity={item?.book_quantity}
+            price={item?.price}
+            onProgress={isPending}
+            cart_items_id={item?.cart_items_id}
+            onUpdate={(data) => manipulateCart(data)}
+          />
+        ))}
+      </div>
     </div>
   );
 };

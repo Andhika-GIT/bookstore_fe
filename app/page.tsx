@@ -3,12 +3,12 @@ import { HeroSection, BooksSection } from "@/containers";
 import { getBooks } from "./actions/book";
 
 export default async function Home() {
-  const books = await getBooks();
+  const data = await getBooks();
 
   return (
     <div className="space-y-11">
       <HeroSection />
-      <BooksSection books={books?.data} />
+      <BooksSection books={data?.books} />
     </div>
   );
 }

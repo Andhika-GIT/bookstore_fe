@@ -1,5 +1,6 @@
 import { ApiResponse, Book } from "@/types";
 import { resolve } from "path";
+import { GetInfiniteBookResponse } from "@/types";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -7,27 +8,15 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const getBooks = async (
   pageParam: number = 1,
-): Promise<
-  | {
-      data: Book[] | undefined;
-      nextPage: number | null | undefined;
-    }
-  | undefined
-> => {
+): Promise<GetInfiniteBookResponse | undefined> => {
   try {
     const response = await fetch(`${BASE_URL}/book?page=${pageParam}`, {
       cache: "no-cache",
     });
 
-    const result: ApiResponse<{
-      books: Book[];
-      nextPage: number;
-    }> = await response.json();
+    const result: ApiResponse<GetInfiniteBookResponse> = await response.json();
 
-    return {
-      data: result?.data?.books,
-      nextPage: result?.data?.nextPage,
-    };
+    return result.data;
   } catch (e) {
     console.log(e);
   }

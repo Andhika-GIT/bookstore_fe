@@ -1,11 +1,11 @@
 export const handleFetchResponse = async (response: Response) => {
-  const data = await response.json();
+  const result = await response.json();
 
   if (!response.status.toString().startsWith("2")) {
-    const error = new Error(data.message || "Something went wrong");
-    (error as any).status = data.statusCode;
-    (error as any).errorData = data;
+    const error = new Error(result.message || "Something went wrong");
+    (error as any).status = result.statusCode;
+    (error as any).errorData = result;
     throw error;
   }
-  return data;
+  return result;
 };

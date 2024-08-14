@@ -10,3 +10,9 @@ export type Book = {
   publication_date: string;
   genres: string;
 };
+
+export type GetInfiniteBookResponse = {
+  totalData: number;
+  books: Book[] | undefined;
+  nextPage: number | null | undefined;
+};

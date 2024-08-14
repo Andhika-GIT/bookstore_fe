@@ -1,5 +1,5 @@
 import { handleFetchResponse } from "@/lib/utilities";
-import { GetOrderResponse } from "@/types";
+import { ApiResponse, GetOrderResponse } from "@/types";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -13,6 +13,8 @@ export const getOrder = async (orderId: string): Promise<GetOrderResponse | unde
       credentials: "include",
     });
 
-    return await handleFetchResponse(response);
+    const result: ApiResponse<GetOrderResponse> = await handleFetchResponse(response);
+
+    return result.data;
   } catch (e) {}
 };
