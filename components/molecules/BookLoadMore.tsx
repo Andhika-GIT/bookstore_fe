@@ -25,7 +25,7 @@ const BookLoadMore: React.FC = () => {
     }
   }, [inView, isFetchingNextPage, fetchNextPage, hasNextPage]);
 
-  const books = data?.pages?.flatMap((page) => page?.data || []);
+  const books = data?.pages?.flatMap((page) => page?.books || []);
 
   return (
     <>

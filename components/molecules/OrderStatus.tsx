@@ -6,7 +6,6 @@ type OrderStatusProps = {
 };
 
 const OrderStatus: React.FC<OrderStatusProps> = ({ order_status }) => {
-  // Tentukan warna berdasarkan status pesanan
   const getColor = (status: string) => {
     switch (status) {
       case "CANCELLED":
@@ -17,14 +16,14 @@ const OrderStatus: React.FC<OrderStatusProps> = ({ order_status }) => {
       case "SETTLEMENT":
         return "text-green-600";
       default:
-        return "text-gray-800"; // Warna default jika status tidak dikenal
+        return "text-gray-800";
     }
   };
 
   return (
     <div className="flex gap-x-1">
       <Text type="span" className="uppercase">
-        ORDER STATUS :{" "}
+        ORDER STATUS :
       </Text>
       <Text type="span" className={`${getColor(order_status)} font-extrabold`}>
         {order_status?.charAt(0) + order_status?.slice(1).toUpperCase()}

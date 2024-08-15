@@ -14,3 +14,9 @@ export type GetOrderResponse = {
   va_number?: string;
   items: BookOrderItem[];
 };
+
+export type GetUserOrderHistoryResponse = {
+  order_id: string;
+  order_status: string;
+  total_items: number;
+};
