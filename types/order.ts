@@ -1,3 +1,5 @@
+import { Book } from "./book";
+
 type BookOrderItem = {
   book_id: string;
   book_price: number;
@@ -15,8 +17,15 @@ export type GetOrderResponse = {
   items: BookOrderItem[];
 };
 
-export type GetUserOrderHistoryResponse = {
+export type UserHistoryItems = {
   order_id: string;
-  order_status: string;
+  order_status: "CANCELLED" | "PENDING" | "SUCCESS" | "SETTLEMENT";
   total_items: number;
+  first_item: Book;
+};
+
+export type GetUserOrderHistoryResponse = {
+  total_page: number;
+  next_page: number;
+  items: UserHistoryItems[];
 };

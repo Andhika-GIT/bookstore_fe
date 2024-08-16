@@ -3,7 +3,7 @@ import { verifyAuth } from "./lib/utilities/auth";
 
 export async function middleware(request: NextRequest) {
   const jwt_token = request.cookies.get("jwt")?.value;
-  const protectedPaths = ["/profile", "/carts"];
+  const protectedPaths = ["/profile", "/carts", "/orders"];
 
   const verifiedToken = jwt_token && (await verifyAuth(jwt_token));
 
@@ -21,5 +21,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/profile", "/carts"],
+  matcher: ["/profile", "/carts", "/orders/:path*"],
 };
