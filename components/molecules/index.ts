@@ -6,6 +6,7 @@ import CartItem from "./CartItem";
 import OrderStatus from "./OrderStatus";
 import OrderItem from "./OrderItem";
 import OrderHistoryItem from "./OrderHistoryItem";
+import PaginationComponent from "./PaginationComponent";
 
 export {
   BookCard,
@@ -16,4 +17,5 @@ export {
   OrderStatus,
   OrderItem,
   OrderHistoryItem,
+  PaginationComponent,
 };

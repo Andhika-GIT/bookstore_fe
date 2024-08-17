@@ -17,6 +17,15 @@ import {
   SheetTitle,
   SheetDescription,
 } from "./sheet";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "./pagination";
 import { Skeleton } from "./skeleton";
 import { toast, useToast } from "./use-toast";
 import { Toaster } from "./toaster";
@@ -44,6 +53,13 @@ export {
   SheetFooter,
   SheetTitle,
   SheetDescription,
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
   Skeleton,
   toast,
   useToast,
