@@ -1,13 +1,7 @@
 import React from "react";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "../ui";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { Pagination, PaginationContent, PaginationItem, Button } from "../ui";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type PaginationComponentProps = {
   page: number;
@@ -26,45 +20,59 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
   isPlaceholderData,
   hasMore,
 }) => {
+  const handlePageChange = (newPage: number) => {
+    if (!isPlaceholderData) {
+      setPage(newPage);
+    }
+  };
+
   return (
     <Pagination>
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious
-            href="#"
-            onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-            isActive={false}
-            className={isPlaceholderData ? "opacity-50 cursor-not-allowed" : ""}
-          />
+          <Button
+            onClick={() => handlePageChange(page - 1)}
+            disabled={page === 1 || isPlaceholderData}
+            className={cn(
+              "flex items-center gap-1 pl-2.5",
+              page === 1 || isPlaceholderData
+                ? "opacity-50 cursor-not-allowed"
+                : "opacity-100 cursor-pointer",
+            )}
+          >
+            <ChevronLeft className="h-4 w-4" />
+            <span>Previous</span>
+          </Button>
         </PaginationItem>
         {Array.from({ length: totalPage }, (_, index) => (
           <PaginationItem key={index}>
-            <PaginationLink
-              href={`?page=${index + 1}`}
-              isActive={page === index + 1}
-              onClick={() => setPage(index + 1)}
-              className={isPlaceholderData ? "opacity-50 cursor-not-allowed" : ""}
+            <Button
+              onClick={() => handlePageChange(index + 1)}
+              disabled={isPlaceholderData}
+              className={cn(
+                "flex items-center gap-1",
+                page === index + 1 ? "font-bold" : "",
+                isPlaceholderData ? "opacity-50 cursor-not-allowed" : "opacity-100 cursor-pointer",
+              )}
             >
               {index + 1}
-            </PaginationLink>
+            </Button>
           </PaginationItem>
         ))}
         <PaginationItem>
-          {!isFetching && hasMore ? (
-            <PaginationNext
-              href="#"
-              onClick={() => setPage((prev) => prev + 1)}
-              isActive={true}
-              className={isPlaceholderData ? "opacity-50 cursor-not-allowed" : ""}
-            />
-          ) : (
-            <PaginationNext
-              href="#"
-              onClick={(e) => e.preventDefault()}
-              isActive={false}
-              className={isPlaceholderData ? "opacity-50 cursor-not-allowed" : ""}
-            />
-          )}
+          <Button
+            onClick={() => handlePageChange(page + 1)}
+            disabled={page >= totalPage || isPlaceholderData}
+            className={cn(
+              "flex items-center gap-1 pr-2.5",
+              page >= totalPage || isPlaceholderData
+                ? "opacity-50 cursor-not-allowed"
+                : "opacity-100 cursor-pointer",
+            )}
+          >
+            <span>Next</span>
+            <ChevronRight className="h-4 w-4" />
+          </Button>
         </PaginationItem>
       </PaginationContent>
     </Pagination>

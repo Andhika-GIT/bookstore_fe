@@ -15,7 +15,9 @@ export const getOrder = async (orderId: string): Promise<GetOrderResponse | unde
     const result: ApiResponse<GetOrderResponse> = await handleFetchResponse(response);
 
     return result.data;
-  } catch (e) {}
+  } catch (e) {
+    throw e;
+  }
 };
 
 export const getUserOrderHistory = async (

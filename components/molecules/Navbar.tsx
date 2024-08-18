@@ -69,11 +69,12 @@ const Navbar: React.FC = () => {
               <CiUser />
               <Text type="p">profile</Text>
             </Link>
-            <button className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300">
+            <button
+              onClick={() => setIsShowingCart((prev) => !prev)}
+              className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300"
+            >
               <CiShoppingCart />
-              <Text type="p" onClick={() => setIsShowingCart((prev) => !prev)}>
-                Items
-              </Text>
+              <Text type="p">Items</Text>
             </button>
           </div>
 

@@ -1,34 +1,59 @@
-import { GetOrderResponse } from "@/types";
+"use client";
+
+import { ApiError, GetOrderResponse } from "@/types";
 import { Text, Button } from "@/components/ui";
 import React from "react";
 import { OrderItem, OrderStatus } from "@/components/molecules";
+import { useQuery } from "@tanstack/react-query";
+import { getOrder } from "@/app/actions/order";
+import { useRouter } from "next/navigation";
 
-const OrderItemSection: React.FC<GetOrderResponse> = ({
-  order_id,
-  total_price,
-  status,
-  payment_type,
-  va_number,
-  items,
-}) => {
+type GetOrderResponseType = {
+  order_id: string;
+};
+
+const OrderItemSection: React.FC<GetOrderResponseType> = ({ order_id }) => {
+  const router = useRouter();
+
+  const {
+    data: order,
+    isError,
+    error,
+    isLoading,
+  } = useQuery<GetOrderResponse | undefined, ApiError>({
+    queryKey: ["order", order_id],
+    queryFn: () => getOrder(order_id),
+  });
+
+  if (isLoading) {
+    return <Text type="h4">loading...</Text>;
+  }
+
+  if (isError || error) {
+    if (error?.errorData?.code === 404) {
+      router.replace("/404");
+      return;
+    }
+    return <Text type="h4">{error?.message || "something went wrong"}</Text>;
+  }
   return (
     <div className="flex flex-col gap-y-5">
       <div className="flex justify-between items-center">
         <div className="flex gap-x-2 md:gap-x-5 items-center">
           <Text type="p" className="text-xs md:text-base">
-            Payment Type : {payment_type}
+            Payment Type : {order?.payment_type}
           </Text>
-          {va_number && (
+          {order?.va_number && (
             <Text type="p" className="font-bold text-xs md:text-base">
-              va number : {va_number}
+              va number : {order?.va_number}
             </Text>
           )}
         </div>
 
-        <OrderStatus order_status={status} />
+        <OrderStatus order_status={order?.status} />
       </div>
       <div className="flex flex-col gap-y-4 border-y-2 border-zinc-950">
-        {items?.map((item, index) => (
+        {order?.items?.map((item, index) => (
           <OrderItem
             key={index}
             img_url={item?.img_url}
@@ -43,7 +68,7 @@ const OrderItemSection: React.FC<GetOrderResponse> = ({
           TOTAL PRICE
         </Text>
         <Text type="h4" className="!font-extrabold">
-          {total_price}
+          {order?.total_price}
         </Text>
       </div>
     </div>

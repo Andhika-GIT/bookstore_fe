@@ -2,7 +2,7 @@ import React from "react";
 import { Text } from "../ui";
 
 type OrderStatusProps = {
-  order_status: "CANCELLED" | "PENDING" | "SUCCESS" | "SETTLEMENT";
+  order_status: "CANCELLED" | "PENDING" | "SUCCESS" | "SETTLEMENT" | undefined;
 };
 
 const OrderStatus: React.FC<OrderStatusProps> = ({ order_status }) => {
@@ -25,9 +25,11 @@ const OrderStatus: React.FC<OrderStatusProps> = ({ order_status }) => {
       <Text type="span" className="uppercase">
         ORDER STATUS :
       </Text>
-      <Text type="span" className={`${getColor(order_status)} font-extrabold`}>
-        {order_status?.charAt(0) + order_status?.slice(1).toUpperCase()}
-      </Text>
+      {order_status && (
+        <Text type="span" className={`${getColor(order_status)} font-extrabold`}>
+          {order_status?.charAt(0) + order_status?.slice(1).toUpperCase()}
+        </Text>
+      )}
     </div>
   );
 };
