@@ -26,9 +26,29 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "./pagination";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "./select";
 import { Skeleton } from "./skeleton";
 import { toast, useToast } from "./use-toast";
 import { Toaster } from "./toaster";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from "./command";
+import { Popover, PopoverContent, PopoverTrigger } from "./popover";
+import { Badge } from "./badge";
 
 export {
   Text,
@@ -60,6 +80,24 @@ export {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Badge,
   Skeleton,
   toast,
   useToast,

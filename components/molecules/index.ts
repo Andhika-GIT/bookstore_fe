@@ -7,6 +7,8 @@ import OrderStatus from "./OrderStatus";
 import OrderItem from "./OrderItem";
 import OrderHistoryItem from "./OrderHistoryItem";
 import PaginationComponent from "./PaginationComponent";
+import SingleSelect from "./SingleSelect";
+import { MultiSelect } from "./MultiSelect";
 
 export {
   BookCard,
@@ -18,4 +20,6 @@ export {
   OrderItem,
   OrderHistoryItem,
   PaginationComponent,
+  SingleSelect,
+  MultiSelect,
 };
