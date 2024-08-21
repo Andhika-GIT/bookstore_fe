@@ -17,8 +17,6 @@ export const getBooks = async ({
   filter,
   genre,
 }: SearchBooksParams = {}): Promise<GetInfiniteBookResponse | undefined> => {
-  await new Promise((resolve) => setTimeout(resolve, 5000));
-
   try {
     const queryParams = new URLSearchParams();
     queryParams.append("page", pageParam?.toString());

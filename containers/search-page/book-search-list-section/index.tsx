@@ -1,7 +1,9 @@
 import React from "react";
+import Link from "next/link";
 import { NextPage } from "next";
 import { getBooks } from "@/app/actions/book";
 import { Text } from "@/components/ui";
+import { BookCard, BookLoadMore } from "@/components/molecules";
 
 type BookSearchListSectionProps = {
   query: string | undefined | null;
@@ -27,7 +29,24 @@ const BookSearchListSection: NextPage<BookSearchListSectionProps> = async ({
       </div>
     );
   }
-  return <div>{data?.books[0]?.title}</div>;
+  return (
+    <>
+      <div className="grid grid-cols-2 xl:grid-cols-4 gap-x-8 gap-y-10 auto-rows-max">
+        {data?.books?.map((book, index) => (
+          <Link href={`/books/${book.id}`} key={index}>
+            <BookCard
+              imgURL={book.img_url}
+              title={book.title}
+              rating={book.rating}
+              ratingSize={100}
+              displayRating={true}
+            />
+          </Link>
+        ))}
+      </div>
+      <BookLoadMore />
+    </>
+  );
 };
 
 export default BookSearchListSection;

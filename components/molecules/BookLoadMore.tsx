@@ -8,12 +8,18 @@ import { getBooks } from "@/app/actions/book";
 import Link from "next/link";
 import BookCard from "./BookCard";
 
-const BookLoadMore: React.FC = () => {
+type BookLoadMoreProps = {
+  query?: string | undefined | null;
+  filter?: string | undefined | null;
+  genre?: string | undefined | null;
+};
+
+const BookLoadMore: React.FC<BookLoadMoreProps> = ({ query, filter, genre }) => {
   const { ref, inView } = useInView();
 
   const { data, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery({
     queryKey: ["books-load-more"],
-    queryFn: ({ pageParam = 2 }) => getBooks({ pageParam: pageParam }),
+    queryFn: ({ pageParam = 2 }) => getBooks({ pageParam, query, filter, genre }),
     initialPageParam: 2,
     getNextPageParam: (lastPage) => lastPage?.nextPage,
     staleTime: 60 * 60 * 1000,
