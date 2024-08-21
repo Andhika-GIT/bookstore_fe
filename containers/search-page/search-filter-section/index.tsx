@@ -6,8 +6,21 @@ import { SingleSelect, MultiSelect } from "@/components/molecules";
 import { Input, Button, Text } from "@/components/ui";
 import { CiSearch } from "react-icons/ci";
 import { useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+import { getAllGenre } from "@/app/actions/genre";
+import { ApiError, GetGenreResponse } from "@/types";
 
 const SearchFilterSection = () => {
+  // fetch genre
+  const {
+    data: genreDropdown,
+    isLoading,
+    isError,
+  } = useQuery<GetGenreResponse[] | undefined, ApiError>({
+    queryKey: ["genre"],
+    queryFn: getAllGenre,
+  });
+
   const [filterBy, setFilterBy] = useState<string>();
   const [genre, setGenre] = useState<string[]>([]);
   const [search, setSearch] = useState("");
@@ -27,7 +40,6 @@ const SearchFilterSection = () => {
     if (search) {
       queryParams.append("query", search);
     }
-
     router.push(`/search?${queryParams.toString()}`);
   };
 
@@ -36,11 +48,17 @@ const SearchFilterSection = () => {
       <div className="flex flex-col md:flex-row gap-y-1 md:gap-x-1 w-full justify-stretch items-center">
         <SingleSelect items={filterDropdown} onChange={setFilterBy} placeholder="Filter By" />
         <MultiSelect
-          options={frameworkDropdown}
+          options={
+            genreDropdown?.map((genre) => ({
+              ...genre,
+              value: genre?.value?.toString(),
+            })) || []
+          }
           onValueChange={setGenre}
           placeholder="Select Genre"
           defaultValue={genre}
           className="bg-white"
+          disabled={isError || isLoading}
         />
       </div>
       <div className="flex gap-x-1 w-full justify-stretch">

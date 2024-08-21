@@ -1,5 +1,6 @@
 import { NextPage } from "next";
-import { SearchFilterSection } from "@/containers";
+import { SearchFilterSection, BookSearchListSection } from "@/containers";
+import { Suspense } from "react";
 
 type SearchProps = {
   searchParams: {
@@ -10,12 +11,12 @@ type SearchProps = {
 };
 
 const Search: NextPage<SearchProps> = ({ searchParams: { query, filter, genre } }) => {
-  console.log(query);
-  console.log(filter);
-  console.log(genre);
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen space-y-28">
       <SearchFilterSection />
+      <Suspense fallback={<p>Loading...</p>}>
+        <BookSearchListSection query={query} filter={filter} genre={genre} />
+      </Suspense>
     </div>
   );
 };

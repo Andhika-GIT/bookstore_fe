@@ -13,7 +13,7 @@ const BookLoadMore: React.FC = () => {
 
   const { data, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery({
     queryKey: ["books-load-more"],
-    queryFn: ({ pageParam = 2 }) => getBooks(pageParam),
+    queryFn: ({ pageParam = 2 }) => getBooks({ pageParam: pageParam }),
     initialPageParam: 2,
     getNextPageParam: (lastPage) => lastPage?.nextPage,
     staleTime: 60 * 60 * 1000,

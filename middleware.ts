@@ -8,7 +8,7 @@ export async function middleware(request: NextRequest) {
   const verifiedToken = jwt_token && (await verifyAuth(jwt_token));
 
   if (!verifiedToken) {
-    if (protectedPaths?.some((path) => request.nextUrl.pathname.startsWith(path))) {
+    if (protectedPaths.some((path) => request.nextUrl.pathname.startsWith(path))) {
       return NextResponse.redirect(new URL("/auth", request.url));
     }
   }

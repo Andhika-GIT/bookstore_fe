@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
 
       activityTimeout = setTimeout(() => {
         setShowNavbar(false);
-      }, 2000); // Waktu dalam milidetik saat navbar akan sembunyi setelah pengguna berhenti bergerak atau menggulir (2000ms = 2 detik)
+      }, 2000);
     };
 
     const handleScroll = handleActivity;

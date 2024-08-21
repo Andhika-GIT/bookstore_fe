@@ -5,3 +5,4 @@ export * from "./cart";
 export * from "./api";
 export * from "./transaction";
 export * from "./order";
+export * from "./genre";

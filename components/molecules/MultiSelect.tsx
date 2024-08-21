@@ -202,7 +202,7 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
                         key={value}
                         className={cn(
                           isAnimating ? "animate-bounce" : "",
-                          "!bg-black !text-white !border-white", // Ganti dengan latar belakang abu-abu gelap dan teks putih
+                          "!bg-black !text-white !border-white",
                           multiSelectVariants({ variant }),
                         )}
                         style={{ animationDuration: `${animation}s` }}
