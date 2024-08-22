@@ -30,22 +30,20 @@ const BookSearchListSection: NextPage<BookSearchListSectionProps> = async ({
     );
   }
   return (
-    <>
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-x-8 gap-y-10 auto-rows-max">
-        {data?.books?.map((book, index) => (
-          <Link href={`/books/${book.id}`} key={index}>
-            <BookCard
-              imgURL={book.img_url}
-              title={book.title}
-              rating={book.rating}
-              ratingSize={100}
-              displayRating={true}
-            />
-          </Link>
-        ))}
-      </div>
-      <BookLoadMore />
-    </>
+    <div className="grid grid-cols-2 xl:grid-cols-4 gap-x-8 gap-y-10 auto-rows-max">
+      {data?.books?.map((book, index) => (
+        <Link href={`/books/${book.id}`} key={index}>
+          <BookCard
+            imgURL={book.img_url}
+            title={book.title}
+            rating={book.rating}
+            ratingSize={100}
+            displayRating={true}
+          />
+        </Link>
+      ))}
+      <BookLoadMore query={query} filter={filter} genre={genre} />
+    </div>
   );
 };
 

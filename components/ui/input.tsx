@@ -1,16 +1,24 @@
 import * as React from "react";
+import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   startIcon?: React.FC;
   endIcon?: React.FC;
   baseClassname?: string;
+  onEnterPress?: (value: string) => void;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ baseClassname, className, type, startIcon, endIcon, ...props }, ref) => {
+  ({ baseClassname, className, type, startIcon, endIcon, onEnterPress, ...props }, ref) => {
     const StartIcon = startIcon;
     const EndIcon = endIcon;
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Enter" && onEnterPress) {
+        onEnterPress(e.currentTarget.value);
+      }
+    };
 
     return (
       <div className={cn("relative", baseClassname)}>
@@ -26,6 +34,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className,
           )}
           ref={ref}
+          onKeyDown={handleKeyDown}
           {...props}
         />
         {EndIcon && (

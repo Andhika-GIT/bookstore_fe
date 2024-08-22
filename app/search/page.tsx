@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import { SearchFilterSection, BookSearchListSection } from "@/containers";
 import { Suspense } from "react";
-import { BookLoadMoreSkeleton } from "@/components/loader";
+import { BookFirstLoadSkeleton, BookLoadMoreSkeleton } from "@/components/loader";
 
 type SearchProps = {
   searchParams: {
@@ -15,7 +15,7 @@ const Search: NextPage<SearchProps> = ({ searchParams: { query, filter, genre } 
   return (
     <div className="min-h-screen space-y-14">
       <SearchFilterSection />
-      <Suspense key={`key-${query}-${filter}-${genre}`} fallback={<BookLoadMoreSkeleton />}>
+      <Suspense key={`key-${query}-${filter}-${genre}`} fallback={<BookFirstLoadSkeleton />}>
         <BookSearchListSection query={query} filter={filter} genre={genre} />
       </Suspense>
     </div>

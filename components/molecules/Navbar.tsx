@@ -13,6 +13,7 @@ const Navbar: React.FC = () => {
   const displayComponent = !pathname.startsWith("/auth");
   const [showNavbar, setShowNavbar] = useState(false);
   const [isShowingCart, setIsShowingCart] = useState<boolean>(false);
+  const [search, setSearch] = useState<string>("");
 
   useEffect(() => {
     let activityTimeout: NodeJS.Timeout;
@@ -55,19 +56,21 @@ const Navbar: React.FC = () => {
           <Link href="/">
             <Text type="h3">Bookstore</Text>
           </Link>
-          <Input
-            baseClassname="w-full shadow-md"
-            type="text"
-            endIcon={CiSearch}
-            placeholder="Search..."
-          />
+
           <div className="flex gap-3 items-center">
+            <Link
+              href="/search"
+              className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300"
+            >
+              <CiSearch />
+              <Text type="p">Search</Text>
+            </Link>
             <Link
               href="/profile?section=profile"
               className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300"
             >
               <CiUser />
-              <Text type="p">profile</Text>
+              <Text type="p">Profile</Text>
             </Link>
             <button
               onClick={() => setIsShowingCart((prev) => !prev)}

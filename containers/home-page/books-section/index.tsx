@@ -30,8 +30,8 @@ const BooksSection: React.FC<BooksSectionProps> = ({ books }) => {
             />
           </Link>
         ))}
+        <BookLoadMore />
       </div>
-      <BookLoadMore />
     </div>
   );
 };

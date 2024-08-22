@@ -3,6 +3,7 @@ import BookInfoSkeleton from "./BookInfoSkeleton";
 import RelatedSectionSkeleton from "./RelatedSectionSkeleton";
 import ReviewSectionSkeleton from "./ReviewSectionSkeleton";
 import BookLoadMoreSkeleton from "./BookLoadMoreSkeleton";
+import BookFirstLoadSkeleton from "./BookFirstLoadSkeleton";
 
 export {
   SideCartSkeleton,
@@ -10,4 +11,5 @@ export {
   RelatedSectionSkeleton,
   ReviewSectionSkeleton,
   BookLoadMoreSkeleton,
+  BookFirstLoadSkeleton,
 };
