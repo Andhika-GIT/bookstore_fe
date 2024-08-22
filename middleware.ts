@@ -14,12 +14,12 @@ export async function middleware(request: NextRequest) {
   }
 
   if (verifiedToken) {
-    if (request.nextUrl.pathname.startsWith("/auth")) {
+    if (request.nextUrl.pathname === "/auth" || request.nextUrl.pathname.startsWith("/auth")) {
       return NextResponse.redirect(new URL("/", request.url));
     }
   }
 }
 
 export const config = {
-  matcher: ["/profile", "/carts", "/orders/:path*"],
+  matcher: ["/profile", "/carts", "/orders/:path*", "/auth"],
 };

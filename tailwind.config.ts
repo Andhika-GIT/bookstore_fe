@@ -51,6 +51,11 @@ const config = {
           dark: "#b3b3b3",
           light: "$e6e6e6",
         },
+        primary_blue: {
+          DEFAULT: "#0064cc",
+          dark: "#004b99",
+          light: "#3297ff",
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",

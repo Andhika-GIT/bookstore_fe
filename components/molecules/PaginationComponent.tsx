@@ -26,6 +26,34 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
     }
   };
 
+  const renderPaginationItems = () => {
+    const pages = [];
+    const maxVisiblePages = 3;
+
+    if (page <= 3) {
+      // Tampilkan halaman 1 sampai 3
+      for (let i = 1; i <= Math.min(maxVisiblePages, totalPage); i++) {
+        pages.push(i);
+      }
+      if (totalPage > 3) {
+        pages.push("...");
+      }
+    } else if (page > 3 && page < totalPage - 2) {
+      // Tampilkan halaman sekitar current page
+      pages.push("...");
+      pages.push(page - 1, page, page + 1);
+      pages.push("...");
+    } else {
+      // Tampilkan halaman terakhir dan sebelumnya
+      pages.push("...");
+      for (let i = totalPage - 2; i <= totalPage; i++) {
+        pages.push(i);
+      }
+    }
+
+    return pages;
+  };
+
   return (
     <Pagination>
       <PaginationContent>
@@ -44,19 +72,25 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
             <span>Previous</span>
           </Button>
         </PaginationItem>
-        {Array.from({ length: totalPage }, (_, index) => (
+        {renderPaginationItems().map((item, index) => (
           <PaginationItem key={index}>
-            <Button
-              onClick={() => handlePageChange(index + 1)}
-              disabled={isPlaceholderData}
-              className={cn(
-                "flex items-center gap-1",
-                page === index + 1 ? "font-bold" : "",
-                isPlaceholderData ? "opacity-50 cursor-not-allowed" : "opacity-100 cursor-pointer",
-              )}
-            >
-              {index + 1}
-            </Button>
+            {typeof item === "number" ? (
+              <Button
+                onClick={() => handlePageChange(item)}
+                disabled={isPlaceholderData}
+                className={cn(
+                  "flex items-center gap-1 hover:bg-primary_blue-dark",
+                  page === item ? "font-bold bg-primary_blue" : "",
+                  isPlaceholderData
+                    ? "opacity-50 cursor-not-allowed"
+                    : "opacity-100 cursor-pointer",
+                )}
+              >
+                {item}
+              </Button>
+            ) : (
+              <span className="flex items-center px-2">...</span>
+            )}
           </PaginationItem>
         ))}
         <PaginationItem>
