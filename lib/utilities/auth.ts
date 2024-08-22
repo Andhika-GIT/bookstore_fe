@@ -11,12 +11,12 @@ export const getJwtSecretKey = () => {
 export const verifyAuth = async (token: string) => {
   try {
     const verified = await jwtVerify(token, new TextEncoder().encode(getJwtSecretKey()));
-    return verified; // Token valid
+    return verified;
   } catch (error) {
     // Type assertion to recognize 'code' property
     if ((error as any).code === "ERR_JWT_EXPIRED") {
-      return null; // Token kadaluarsa
+      return null;
     }
-    throw error; // Rethrow error jika bukan masalah kadaluarsa
+    throw error;
   }
 };

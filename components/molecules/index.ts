@@ -9,6 +9,8 @@ import OrderHistoryItem from "./OrderHistoryItem";
 import PaginationComponent from "./PaginationComponent";
 import SingleSelect from "./SingleSelect";
 import { MultiSelect } from "./MultiSelect";
+import NavbarItems from "./NavbarItems";
+import Navbar from "./Navbar";
 
 export {
   BookCard,
@@ -22,4 +24,6 @@ export {
   PaginationComponent,
   SingleSelect,
   MultiSelect,
+  Navbar,
+  NavbarItems,
 };
