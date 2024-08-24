@@ -11,6 +11,7 @@ import SingleSelect from "./SingleSelect";
 import { MultiSelect } from "./MultiSelect";
 import NavbarItems from "./NavbarItems";
 import Navbar from "./Navbar";
+import { LogoutAlert } from "./LogoutAlert";
 
 export {
   BookCard,
@@ -26,4 +27,5 @@ export {
   MultiSelect,
   Navbar,
   NavbarItems,
+  LogoutAlert,
 };

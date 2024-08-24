@@ -38,3 +38,16 @@ export const signUp = async (formData: registerSchemaType): Promise<any> => {
     throw error;
   }
 };
+
+export const signOut = async (): Promise<any> => {
+  try {
+    const response = await fetch(`${BASE_URL}/auth/signOut`, {
+      method: "POST",
+      credentials: "include",
+    });
+
+    return await handleFetchResponse(response);
+  } catch (error) {
+    throw error;
+  }
+};

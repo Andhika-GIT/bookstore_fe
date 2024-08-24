@@ -10,7 +10,6 @@ import { useMutation } from "@tanstack/react-query";
 import { signIn, signUp } from "@/app/actions/auth";
 import { loginSchemaType, registerSchemaType } from "@/schemas";
 import { isLoginSchemaType, isRegisterSchemaType } from "@/lib/utilities";
-import { useRouter } from "next/navigation";
 import { ApiError } from "@/types";
 
 type SecondPanelSectionProps = {
@@ -27,9 +26,6 @@ const SecondPanelSection: React.FC<SecondPanelSectionProps> = ({ session }) => {
   // for invalid credential
   const [credentialErrorMessage, setCredentialErrorMessage] = useState<string | null>(null);
 
-  // router
-  const router = useRouter();
-
   // Mutation
   const { mutate } = useMutation({
     mutationFn: (formData: FormData) => {
@@ -43,7 +39,7 @@ const SecondPanelSection: React.FC<SecondPanelSectionProps> = ({ session }) => {
       }
     },
     onSuccess: () => {
-      router.replace("/");
+      window.location.href = "/";
     },
     onError: (error: ApiError) => {
       if (error?.errorData?.code === 400) {

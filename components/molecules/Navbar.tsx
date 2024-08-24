@@ -7,6 +7,7 @@ import NavbarItems from "./NavbarItems";
 
 const Navbar = async () => {
   const jwt_token = cookies().get("jwt")?.value;
+
   const verifiedToken = jwt_token ? await verifyAuth(jwt_token) : null;
 
   return <NavbarItems isAuthenticated={!!verifiedToken} />;

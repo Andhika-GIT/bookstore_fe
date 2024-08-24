@@ -1,24 +1,39 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Input, Text } from "@/components/ui";
+import { Input, Text, useToast } from "@/components/ui";
 import Link from "next/link";
 import { CiSearch, CiUser } from "react-icons/ci";
 import SideCart from "./SideCart";
 import { usePathname } from "next/navigation";
 import { CiShoppingCart } from "react-icons/ci";
 import { PiSignOut, PiSignIn } from "react-icons/pi";
+import { signOut } from "@/app/actions/auth";
+import { LogoutAlert } from "./LogoutAlert";
 
 type NavbarItemsProps = {
   isAuthenticated: boolean;
 };
 
 const NavbarItems: React.FC<NavbarItemsProps> = ({ isAuthenticated }) => {
-  console.log(isAuthenticated);
   const pathname = usePathname();
+  const { toast } = useToast();
   const displayComponent = !pathname.startsWith("/auth");
   const [showNavbar, setShowNavbar] = useState(false);
   const [isShowingCart, setIsShowingCart] = useState<boolean>(false);
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      window.location.href = "/auth?session=login";
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        description: "Something went wrong",
+        duration: 3000,
+      });
+    }
+  };
 
   useEffect(() => {
     let activityTimeout: NodeJS.Timeout;
@@ -87,25 +102,27 @@ const NavbarItems: React.FC<NavbarItemsProps> = ({ isAuthenticated }) => {
                   <Text type="p">Items</Text>
                 </button>
 
-                <button
-                  onClick={() => {}}
-                  className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300"
-                >
-                  <PiSignOut />
-                  <Text type="p" className="text-red-500">
-                    Logout
-                  </Text>
-                </button>
+                <LogoutAlert
+                  triggerButton={
+                    <button className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300">
+                      <PiSignOut />
+                      <Text type="p" className="text-red-500">
+                        Logout
+                      </Text>
+                    </button>
+                  }
+                  onConfirm={handleLogout}
+                />
               </>
             ) : (
               <>
-                <button
-                  onClick={() => setIsShowingCart((prev) => !prev)}
+                <Link
+                  href="/auth?session=login"
                   className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300"
                 >
                   <PiSignIn />
                   <Text type="p">Login</Text>
-                </button>
+                </Link>
               </>
             )}
           </div>
