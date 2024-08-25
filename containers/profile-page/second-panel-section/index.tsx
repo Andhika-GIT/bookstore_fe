@@ -1,26 +1,30 @@
 import React from "react";
 import InfoProfileSection from "./info-profile-section";
 import TransactionSection from "./transaction-section";
-import { User } from "@/types";
+import { Suspense } from "react";
+import { InfoProfileSectionSkeleton } from "@/components/loader";
 
 type SecondPanelSectionProps = {
-  userProfile: User;
   section: string;
   className?: string;
 };
 
-const SecondPanelSection: React.FC<SecondPanelSectionProps> = ({
-  section,
-  userProfile,
-  className = "",
-}) => {
+const SecondPanelSection: React.FC<SecondPanelSectionProps> = ({ section, className = "" }) => {
   const renderComponent = () => {
     if (section === "profile") {
-      return <InfoProfileSection userProfile={userProfile} />;
+      return (
+        <Suspense key={`${section}-${className}`} fallback={<InfoProfileSectionSkeleton />}>
+          <InfoProfileSection />
+        </Suspense>
+      );
     } else if (section === "transaction") {
       return <TransactionSection />;
     } else {
-      return <InfoProfileSection userProfile={userProfile} />;
+      return (
+        <Suspense key={`${section}-${className}`} fallback={<InfoProfileSectionSkeleton />}>
+          <InfoProfileSection />
+        </Suspense>
+      );
     }
   };
 

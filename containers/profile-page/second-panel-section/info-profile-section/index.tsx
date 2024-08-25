@@ -1,40 +1,38 @@
-import { InputWithLabel } from "@/components/molecules";
-import TextareaWithLabel from "@/components/molecules/TextareaWithLabel";
-import { User } from "@/types";
 import React from "react";
-
-type InfoProfileSectionProps = {
-  userProfile: User;
-};
+import { Text } from "@/components/ui";
+import { InputWithLabel, TextareaWithLabel } from "@/components/molecules";
+import { NextPage } from "next";
+import { getProfile } from "@/app/actions/user";
 
 const inputClassName =
   "w-full bg-[#e1e0e0] border-t-8 border-x-1 border-b-1 border-[#0b9256] font-extrabold";
 const labelClassName = "w-full opacity-50";
 
-const InfoProfileSection: React.FC<InfoProfileSectionProps> = ({ userProfile }) => {
-  const { username, email, phoneNumber, address, fullname } = userProfile;
+const InfoProfileSection: NextPage = async () => {
+  const data = await getProfile();
+
+  if (!data) {
+    return (
+      <div className="flex justify-center">
+        <Text type="h3">Could not get profile info</Text>
+      </div>
+    );
+  }
   return (
     <div className="w-full flex flex-col gap-y-10">
       <InputWithLabel
         labelText="Username"
         inputType="text"
-        value={username}
+        value={data?.username}
         labelClassName={labelClassName}
         inputClassName={inputClassName}
         disabled
       />
-      <InputWithLabel
-        labelText="Fullname"
-        inputType="text"
-        value={fullname}
-        labelClassName={labelClassName}
-        inputClassName={inputClassName}
-        disabled
-      />
+
       <InputWithLabel
         labelText="Email"
         inputType="email"
-        value={email}
+        value={data?.email}
         labelClassName={labelClassName}
         inputClassName={inputClassName}
         disabled
@@ -42,14 +40,14 @@ const InfoProfileSection: React.FC<InfoProfileSectionProps> = ({ userProfile }) 
       <InputWithLabel
         labelText="Phone Number"
         inputType="text"
-        value={phoneNumber}
+        value={data?.phone_number}
         labelClassName={labelClassName}
         inputClassName={inputClassName}
         disabled
       />
       <TextareaWithLabel
         labelText="Address"
-        value={address}
+        value={data?.address}
         labelClassName={labelClassName}
         textareaClassName={inputClassName}
         disabled

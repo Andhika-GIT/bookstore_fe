@@ -4,6 +4,7 @@ import RelatedSectionSkeleton from "./RelatedSectionSkeleton";
 import ReviewSectionSkeleton from "./ReviewSectionSkeleton";
 import BookLoadMoreSkeleton from "./BookLoadMoreSkeleton";
 import BookFirstLoadSkeleton from "./BookFirstLoadSkeleton";
+import InfoProfileSectionSkeleton from "./InfoProfileSectionSkeleton";
 
 export {
   SideCartSkeleton,
@@ -12,4 +13,5 @@ export {
   ReviewSectionSkeleton,
   BookLoadMoreSkeleton,
   BookFirstLoadSkeleton,
+  InfoProfileSectionSkeleton,
 };

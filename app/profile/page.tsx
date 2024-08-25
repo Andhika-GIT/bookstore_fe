@@ -18,11 +18,7 @@ const Profile: NextPage<ProfileProps> = ({ searchParams: { section } }) => {
         username={user.username}
         fullName={user.fullname}
       />
-      <SecondPanelSection
-        section={section}
-        userProfile={user}
-        className="col-span-2 min-h-screen"
-      />
+      <SecondPanelSection section={section} className="col-span-2 min-h-screen" />
     </div>
   );
 };

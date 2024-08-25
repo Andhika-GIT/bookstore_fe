@@ -1,7 +1,6 @@
-export type User = {
+export type GetUserResponse = {
   username: string;
-  fullname: string;
   email: string;
   address: string;
-  phoneNumber: string;
+  phone_number: string;
 };

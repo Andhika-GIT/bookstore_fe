@@ -1,5 +1,6 @@
 import BookCard from "./BookCard";
 import InputWithLabel from "./InputWithLabel";
+import TextareaWithLabel from "./TextareaWithLabel";
 import SideCart from "./SideCart";
 import BookLoadMore from "./BookLoadMore";
 import CartItem from "./CartItem";
@@ -16,6 +17,7 @@ import { LogoutAlert } from "./LogoutAlert";
 export {
   BookCard,
   InputWithLabel,
+  TextareaWithLabel,
   SideCart,
   BookLoadMore,
   CartItem,
