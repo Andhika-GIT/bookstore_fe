@@ -12,6 +12,7 @@ import SingleSelect from "./SingleSelect";
 import { MultiSelect } from "./MultiSelect";
 import NavbarItems from "./NavbarItems";
 import Navbar from "./Navbar";
+import MobileMenu from "./MobileMenu";
 import { LogoutAlert } from "./LogoutAlert";
 
 export {
@@ -30,4 +31,5 @@ export {
   Navbar,
   NavbarItems,
   LogoutAlert,
+  MobileMenu,
 };

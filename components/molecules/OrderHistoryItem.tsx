@@ -22,7 +22,7 @@ const OrderHistoryItem: React.FC<UserHistoryItems> = ({
 }) => {
   return (
     <Card className="w-full">
-      <CardHeader className="flex flex-row justify-between items-center">
+      <CardHeader className="flex flex-col md:flex-row md:justify-between items-baseline md:items-center">
         <CardTitle>
           <OrderStatus order_status={order_status} />
         </CardTitle>
@@ -37,9 +37,8 @@ const OrderHistoryItem: React.FC<UserHistoryItems> = ({
           className="shadow-xl"
         />
         <Text type="span" className="">
-          {first_item.title}
+          {first_item.title} {total_items > 1 && `+ ${total_items - 1} more items..`}
         </Text>
-        {total_items > 1 && <Text>+ {total_items - 1} more items..</Text>}
       </CardContent>
       <CardFooter>
         <Link href={`/orders/${order_id}`}>

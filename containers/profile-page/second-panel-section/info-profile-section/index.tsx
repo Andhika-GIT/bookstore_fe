@@ -19,7 +19,7 @@ const InfoProfileSection: NextPage = async () => {
     );
   }
   return (
-    <div className="w-full flex flex-col gap-y-10">
+    <div className="w-full flex flex-col gap-y-2 md:gap-y-10">
       <InputWithLabel
         labelText="Username"
         inputType="text"

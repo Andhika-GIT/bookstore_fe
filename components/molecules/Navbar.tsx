@@ -10,7 +10,11 @@ const Navbar = async () => {
 
   const verifiedToken = jwt_token ? await verifyAuth(jwt_token) : null;
 
-  return <NavbarItems isAuthenticated={!!verifiedToken} />;
+  return (
+    <div className="hidden md:block">
+      <NavbarItems isAuthenticated={!!verifiedToken} />
+    </div>
+  );
 };
 
 export default Navbar;

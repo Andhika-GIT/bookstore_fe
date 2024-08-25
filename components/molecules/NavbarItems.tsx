@@ -17,8 +17,12 @@ type NavbarItemsProps = {
 
 const NavbarItems: React.FC<NavbarItemsProps> = ({ isAuthenticated }) => {
   const pathname = usePathname();
+
+  if (pathname.startsWith("/auth") || pathname === "/404") {
+    return null;
+  }
   const { toast } = useToast();
-  const displayComponent = !pathname.startsWith("/auth");
+
   const [showNavbar, setShowNavbar] = useState(false);
   const [isShowingCart, setIsShowingCart] = useState<boolean>(false);
 
@@ -66,73 +70,69 @@ const NavbarItems: React.FC<NavbarItemsProps> = ({ isAuthenticated }) => {
   }, []);
 
   return (
-    <>
-      {displayComponent && (
-        <div
-          className={`fixed top-0 left-0 w-full bg-[#FAF9F6] shadow-md transition-transform transform ${
-            showNavbar ? "translate-y-0" : "-translate-y-full"
-          } flex justify-between items-center gap-4 px-6 py-4 z-50`}
+    <div
+      className={`fixed top-0 left-0 w-full bg-[#FAF9F6] shadow-md transition-transform transform ${
+        showNavbar ? "translate-y-0" : "-translate-y-full"
+      } flex justify-between items-center gap-4 px-6 py-4 z-50`}
+    >
+      <Link href="/">
+        <Text type="h3">Bookstore</Text>
+      </Link>
+
+      <div className="flex gap-3 items-center">
+        <Link
+          href="/search"
+          className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300"
         >
-          <Link href="/">
-            <Text type="h3">Bookstore</Text>
-          </Link>
+          <CiSearch />
+          <Text type="p">Search</Text>
+        </Link>
+        <Link
+          href="/profile?section=profile"
+          className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300"
+        >
+          <CiUser />
+          <Text type="p">Profile</Text>
+        </Link>
+        {isAuthenticated ? (
+          <>
+            <button
+              onClick={() => setIsShowingCart((prev) => !prev)}
+              className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300"
+            >
+              <CiShoppingCart />
+              <Text type="p">Items</Text>
+            </button>
 
-          <div className="flex gap-3 items-center">
-            <Link
-              href="/search"
-              className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300"
-            >
-              <CiSearch />
-              <Text type="p">Search</Text>
-            </Link>
-            <Link
-              href="/profile?section=profile"
-              className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300"
-            >
-              <CiUser />
-              <Text type="p">Profile</Text>
-            </Link>
-            {isAuthenticated ? (
-              <>
-                <button
-                  onClick={() => setIsShowingCart((prev) => !prev)}
-                  className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300"
-                >
-                  <CiShoppingCart />
-                  <Text type="p">Items</Text>
+            <LogoutAlert
+              triggerButton={
+                <button className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300">
+                  <PiSignOut />
+                  <Text type="p" className="text-red-500">
+                    Logout
+                  </Text>
                 </button>
+              }
+              onConfirm={handleLogout}
+            />
+          </>
+        ) : (
+          <>
+            <Link
+              href="/auth?session=login"
+              className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300"
+            >
+              <PiSignIn />
+              <Text type="p">Login</Text>
+            </Link>
+          </>
+        )}
+      </div>
 
-                <LogoutAlert
-                  triggerButton={
-                    <button className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300">
-                      <PiSignOut />
-                      <Text type="p" className="text-red-500">
-                        Logout
-                      </Text>
-                    </button>
-                  }
-                  onConfirm={handleLogout}
-                />
-              </>
-            ) : (
-              <>
-                <Link
-                  href="/auth?session=login"
-                  className="flex gap-1 items-center cursor-pointer hover:bg-primary_grey p-1 transition transform duration-300"
-                >
-                  <PiSignIn />
-                  <Text type="p">Login</Text>
-                </Link>
-              </>
-            )}
-          </div>
-
-          {isShowingCart && (
-            <SideCart isShowingCart={isShowingCart} setIsShowingCart={setIsShowingCart} />
-          )}
-        </div>
+      {isShowingCart && (
+        <SideCart isShowingCart={isShowingCart} setIsShowingCart={setIsShowingCart} />
       )}
-    </>
+    </div>
   );
 };
 

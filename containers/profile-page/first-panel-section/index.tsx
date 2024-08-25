@@ -21,7 +21,7 @@ const FirstPanelSection: React.FC<FirstPanelSelectionProps> = ({
   section,
 }) => {
   return (
-    <div className={`flex-col space-y-6 ${className} min-h-screen`}>
+    <div className={`flex-col space-y-6 ${className}`}>
       <div className="space-y-5">
         <div className="flex justify-center lg:justify-stretch">
           <Image

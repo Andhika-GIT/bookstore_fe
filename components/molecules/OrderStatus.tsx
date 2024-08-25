@@ -22,11 +22,14 @@ const OrderStatus: React.FC<OrderStatusProps> = ({ order_status }) => {
 
   return (
     <div className="flex gap-x-1">
-      <Text type="span" className="uppercase">
+      <Text type="span" className="uppercase text-xs md:text-base">
         ORDER STATUS :
       </Text>
       {order_status && (
-        <Text type="span" className={`${getColor(order_status)} font-extrabold`}>
+        <Text
+          type="span"
+          className={`${getColor(order_status)} font-extrabold text-xs md:text-base`}
+        >
           {order_status?.charAt(0) + order_status?.slice(1).toUpperCase()}
         </Text>
       )}

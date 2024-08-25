@@ -6,6 +6,7 @@ import { Rubik } from "next/font/google";
 import { TanstackProvider } from "@/providers/TanstackProvider";
 import Navbar from "@/components/molecules/Navbar";
 import { Toaster } from "@/components/ui";
+import { MobileMenu } from "@/components/molecules";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -34,6 +35,7 @@ export default function RootLayout({
         <body className={rubik.className}>
           <Toaster />
           <Navbar />
+          <MobileMenu />
           <div className="pt-32 px-5 lg:pt-24 lg:px-20 pb-10  bg-primary font-mona-sans">
             {children}
           </div>

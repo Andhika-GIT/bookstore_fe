@@ -10,7 +10,7 @@ type ProfileProps = {
 
 const Profile: NextPage<ProfileProps> = ({ searchParams: { section } }) => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-5 gap-y-3 min-h-screen">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-5 gap-y-5 min-h-screen">
       <FirstPanelSection
         reviewCount={5}
         orderCount={5}

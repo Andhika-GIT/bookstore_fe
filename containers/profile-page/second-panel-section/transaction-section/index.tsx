@@ -24,7 +24,7 @@ const TransactionSection = () => {
   });
 
   return (
-    <div className="flex flex-col gap-y-2 min-h-screen">
+    <div className="flex flex-col gap-y-2 ">
       {orderHistoryData?.items?.map((item) => (
         <OrderHistoryItem
           key={item.order_id}
@@ -35,7 +35,7 @@ const TransactionSection = () => {
         />
       ))}
 
-      <div className="w-full mt-auto">
+      <div className="w-full mt-4 md:mt-auto">
         <PaginationComponent
           page={page}
           setPage={setPage}
