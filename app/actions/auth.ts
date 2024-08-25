@@ -2,12 +2,11 @@
 
 import { handleFetchResponse } from "@/lib/utilities";
 import { loginSchemaType, registerSchemaType } from "@/schemas"; // S
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+import { SERVER_BASE_URL } from "@/lib/utilities/global";
 
 export const signIn = async (formData: loginSchemaType): Promise<any> => {
   try {
-    const response = await fetch(`${BASE_URL}/auth/signIn`, {
+    const response = await fetch(`${SERVER_BASE_URL}/auth/signIn`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -24,7 +23,7 @@ export const signIn = async (formData: loginSchemaType): Promise<any> => {
 
 export const signUp = async (formData: registerSchemaType): Promise<any> => {
   try {
-    const response = await fetch(`${BASE_URL}/auth/signUp`, {
+    const response = await fetch(`${SERVER_BASE_URL}/auth/signUp`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -41,7 +40,7 @@ export const signUp = async (formData: registerSchemaType): Promise<any> => {
 
 export const signOut = async (): Promise<any> => {
   try {
-    const response = await fetch(`${BASE_URL}/auth/signOut`, {
+    const response = await fetch(`${SERVER_BASE_URL}/auth/signOut`, {
       method: "POST",
       credentials: "include",
     });

@@ -2,11 +2,11 @@
 
 import { handleFetchResponse } from "@/lib/utilities";
 import { GetGenreResponse, ApiResponse } from "@/types";
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+import { SERVER_BASE_URL } from "@/lib/utilities/global";
 
 export const getAllGenre = async (): Promise<GetGenreResponse[] | undefined> => {
   try {
-    const response = await fetch(`${BASE_URL}/genre`, {
+    const response = await fetch(`${SERVER_BASE_URL}/genre`, {
       cache: "no-cache",
       credentials: "include",
     });

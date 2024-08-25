@@ -2,12 +2,11 @@
 
 import { handleFetchResponse } from "@/lib/utilities";
 import { ApiResponse, GetOrderResponse, GetUserOrderHistoryResponse } from "@/types";
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+import { SERVER_BASE_URL } from "@/lib/utilities/global";
 
 export const getOrder = async (orderId: string): Promise<GetOrderResponse | undefined> => {
   try {
-    const response = await fetch(`${BASE_URL}/order/${orderId}`, {
+    const response = await fetch(`${SERVER_BASE_URL}/order/${orderId}`, {
       cache: "no-cache",
       credentials: "include",
     });
@@ -24,7 +23,7 @@ export const getUserOrderHistory = async (
   page: number,
 ): Promise<GetUserOrderHistoryResponse | undefined> => {
   try {
-    const response = await fetch(`${BASE_URL}/order/history/user?page=${page}`, {
+    const response = await fetch(`${SERVER_BASE_URL}/order/history/user?page=${page}`, {
       cache: "no-cache",
       credentials: "include",
     });

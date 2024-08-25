@@ -1,8 +1,6 @@
 import { ApiResponse, Book } from "@/types";
-import { resolve } from "path";
 import { GetInfiniteBookResponse } from "@/types";
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+import { SERVER_BASE_URL } from "@/lib/utilities/global";
 
 type SearchBooksParams = {
   pageParam?: number | undefined;
@@ -33,7 +31,7 @@ export const getBooks = async ({
       queryParams.append("genre", genre);
     }
 
-    const response = await fetch(`${BASE_URL}/book/search?${queryParams.toString()}`, {
+    const response = await fetch(`${SERVER_BASE_URL}/book/search?${queryParams.toString()}`, {
       cache: "no-store",
     });
 
@@ -46,7 +44,7 @@ export const getBooks = async ({
 };
 
 export const getOneBook = async (id: number): Promise<Book | undefined> => {
-  const response = await fetch(`${BASE_URL}/book/${id}`, {
+  const response = await fetch(`${SERVER_BASE_URL}/book/${id}`, {
     cache: "no-cache",
   });
 

@@ -1,14 +1,12 @@
 "use client";
 
 import { handleFetchResponse } from "@/lib/utilities";
-import { CartItem } from "@/types";
+import { SERVER_BASE_URL } from "@/lib/utilities/global";
 import { TransactionPayload } from "@/types";
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const getTransactionToken = async (transactionPayload: TransactionPayload) => {
   try {
-    const response = await fetch(`${BASE_URL}/transaction/create`, {
+    const response = await fetch(`${SERVER_BASE_URL}/transaction/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
