@@ -11,15 +11,16 @@ type BookOrderItem = {
 export type GetOrderResponse = {
   order_id: string;
   total_price: number;
-  status: "CANCELLED" | "PENDING" | "SUCCESS" | "SETTLEMENT";
+  status: "CANCELLED" | "PENDING" | "SUCCESS" | "SETTLED";
   payment_type: string;
   va_number?: string;
+  bank?: string;
   items: BookOrderItem[];
 };
 
 export type UserHistoryItems = {
   order_id: string;
-  order_status: "CANCELLED" | "PENDING" | "SUCCESS" | "SETTLEMENT";
+  order_status: "CANCELLED" | "PENDING" | "SUCCESS" | "SETTLED";
   total_items: number;
   first_item: Book;
 };

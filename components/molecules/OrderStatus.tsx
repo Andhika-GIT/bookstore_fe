@@ -2,7 +2,7 @@ import React from "react";
 import { Text } from "../ui";
 
 type OrderStatusProps = {
-  order_status: "CANCELLED" | "PENDING" | "SUCCESS" | "SETTLEMENT" | undefined;
+  order_status: "CANCELLED" | "PENDING" | "SUCCESS" | "SETTLED" | undefined;
 };
 
 const OrderStatus: React.FC<OrderStatusProps> = ({ order_status }) => {
@@ -13,7 +13,7 @@ const OrderStatus: React.FC<OrderStatusProps> = ({ order_status }) => {
       case "PENDING":
         return "text-yellow-500";
       case "SUCCESS":
-      case "SETTLEMENT":
+      case "SETTLED":
         return "text-green-600";
       default:
         return "text-gray-800";

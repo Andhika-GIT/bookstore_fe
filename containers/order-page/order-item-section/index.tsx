@@ -36,6 +36,8 @@ const OrderItemSection: React.FC<GetOrderResponseType> = ({ order_id }) => {
     }
     return <Text type="h4">{error?.message || "something went wrong"}</Text>;
   }
+
+  console.log(order);
   return (
     <div className="flex flex-col gap-y-5">
       <div className="flex justify-between items-center">
@@ -45,7 +47,8 @@ const OrderItemSection: React.FC<GetOrderResponseType> = ({ order_id }) => {
           </Text>
           {order?.va_number && (
             <Text type="p" className="font-bold text-xs md:text-base">
-              va number : {order?.va_number}
+              va number : {order?.va_number}{" "}
+              {order?.bank && `/ bank : ${order?.bank.toLocaleUpperCase()}`}
             </Text>
           )}
         </div>
