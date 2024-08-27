@@ -3,6 +3,7 @@ import { BookCard } from "@/components/molecules";
 import { Button, Text } from "@/components/ui";
 import { NextPage } from "next";
 import { getRelatedBook } from "@/app/actions/book";
+import Link from "next/link";
 
 type RelatedSectionProps = {
   id: number;
@@ -10,7 +11,7 @@ type RelatedSectionProps = {
 };
 
 const RelatedSection: NextPage<RelatedSectionProps> = async ({ id, className }) => {
-  const books = await getRelatedBook(id);
+  const data = await getRelatedBook(id);
 
   return (
     <div className={`flex flex-col space-y-5 justify-between items-start ${className}`}>
@@ -20,11 +21,9 @@ const RelatedSection: NextPage<RelatedSectionProps> = async ({ id, className }) 
         </Text>
         <Text type="p">Some items that you might be interested in</Text>
         <div className="grid justify-items-center grid-cols-3 gap-x-2 lg:gap-x-3 gap-y-2 w-full auto-cols-max max-w">
-          {books
-            ?.slice(0, 3)
-            .map((book, index) => (
+          {data?.books?.slice(0, 3).map((book, index) => (
+            <Link href={`/books/${book?.id}`} key={`book-${book?.id}-${index}-${book?.title}`}>
               <BookCard
-                key={index}
                 imgURL={book?.img_url}
                 title={book?.title}
                 rating={book?.rating}
@@ -33,13 +32,19 @@ const RelatedSection: NextPage<RelatedSectionProps> = async ({ id, className }) 
                 tagsClassName="text-xs"
                 displayRating={false}
               />
-            ))}
+            </Link>
+          ))}
         </div>
       </div>
-      {books && books?.length !== 0 && (
-        <Button className="w-full" variant="outline">
-          View More
-        </Button>
+      {data?.genre && (
+        <Link
+          href={`/search?filter=latest&genre=${encodeURIComponent(data?.genre || "")}`}
+          className="w-full"
+        >
+          <Button className="w-full" variant="outline">
+            View More
+          </Button>
+        </Link>
       )}
     </div>
   );

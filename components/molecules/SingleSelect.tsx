@@ -17,6 +17,7 @@ interface SingleSelectProps {
   label?: string;
   placeholder?: string;
   className?: string;
+  value?: string; // Tambahkan prop value
 }
 
 const SingleSelect: React.FC<SingleSelectProps> = ({
@@ -25,9 +26,10 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
   label,
   placeholder = "Select an option",
   className,
+  value, // Tambahkan value prop
 }) => {
   return (
-    <Select onValueChange={onChange}>
+    <Select onValueChange={onChange} value={value}>
       <SelectTrigger className={className}>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>

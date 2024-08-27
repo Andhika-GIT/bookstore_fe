@@ -14,7 +14,7 @@ type SearchProps = {
 const Search: NextPage<SearchProps> = ({ searchParams: { query, filter, genre } }) => {
   return (
     <div className="min-h-screen space-y-14">
-      <SearchFilterSection />
+      <SearchFilterSection defaultFilter={filter} defaultGenre={genre} defaultQuery={query} />
       <Suspense key={`key-${query}-${filter}-${genre}`} fallback={<BookFirstLoadSkeleton />}>
         <BookSearchListSection query={query} filter={filter} genre={genre} />
       </Suspense>

@@ -31,7 +31,7 @@ export const getBooks = async ({
       queryParams.append("genre", genre);
     }
 
-    const response = await fetch(`${SERVER_BASE_URL}/book/search?${queryParams.toString()}`, {
+    const response = await fetch(`${SERVER_BASE_URL}/book?${queryParams.toString()}`, {
       cache: "no-store",
     });
 
@@ -53,12 +53,23 @@ export const getOneBook = async (id: number): Promise<Book | undefined> => {
   return result?.data;
 };
 
-export const getRelatedBook = async (id: number): Promise<Book[] | undefined> => {
+export const getRelatedBook = async (
+  id: number,
+): Promise<
+  | {
+      genre: string;
+      books: Book[];
+    }
+  | undefined
+> => {
   const response = await fetch(`${SERVER_BASE_URL}/book/related/${id}`, {
     cache: "no-cache",
   });
 
-  const result: ApiResponse<Book[]> = await response.json();
+  const result: ApiResponse<{
+    genre: string;
+    books: Book[];
+  }> = await response.json();
 
   return result?.data;
 };
