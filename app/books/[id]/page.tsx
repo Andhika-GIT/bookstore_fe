@@ -1,28 +1,26 @@
-import React from "react";
-import { notFound, useRouter } from "next/navigation";
-import { reviews } from "@/lib/mock";
-import { RelatedSection, ReviewSection, BookInfoSection } from "@/containers";
+import React, { Suspense } from "react";
+import { RelatedSection, BookInfoSection } from "@/containers";
 import { books } from "@/lib/mock";
-import { getOneBook } from "@/app/actions/book";
+import { BookInfoSkeleton } from "@/components/loader";
 
 const BookDetail = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
 
-  const selectedBook = await getOneBook(parseInt(id));
-
-  if (!selectedBook) {
-    notFound();
-  }
-
   return (
-    <div className="grid grid-cols-3 gap-x-14 gap-y-10">
-      <BookInfoSection {...selectedBook} className="col-span-3 lg:col-span-2" />
-      <RelatedSection books={books} className="col-span-3 lg:col-auto" />
-      <ReviewSection
-        reviews={reviews}
-        bookRating={selectedBook?.rating}
-        className="col-span-full w-full"
-      />
+    <div className="min-h-screen">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-14 gap-y-10 ">
+        <Suspense
+          key={`book-${id}`}
+          fallback={
+            <div className="lg:col-span-2">
+              <BookInfoSkeleton />
+            </div>
+          }
+        >
+          <BookInfoSection id={parseInt(id)} className="lg:col-span-2" />
+        </Suspense>
+        <RelatedSection books={books} className="lg:col-auto" />
+      </div>
     </div>
   );
 };

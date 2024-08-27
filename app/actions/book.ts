@@ -44,6 +44,8 @@ export const getBooks = async ({
 };
 
 export const getOneBook = async (id: number): Promise<Book | undefined> => {
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+
   const response = await fetch(`${SERVER_BASE_URL}/book/${id}`, {
     cache: "no-cache",
   });
