@@ -4,7 +4,7 @@ import { Skeleton } from "@/components/ui";
 const BookInfoSkeleton: React.FC = () => {
   return (
     <div className="flex flex-col items-center md:items-stretch md:flex-row gap-7 col-span-1">
-      <Skeleton className="w-[350px] h-[375px] rounded-md bg-slate-400" /> {/* Image Skeleton */}
+      <Skeleton className="w-[340px] h-[375px] rounded-md bg-slate-400" /> {/* Image Skeleton */}
       <div className="flex flex-col justify-between w-full space-y-3">
         <div className="space-y-3">
           <Skeleton className="bg-slate-400 h-12 w-64" /> {/* Title Skeleton */}

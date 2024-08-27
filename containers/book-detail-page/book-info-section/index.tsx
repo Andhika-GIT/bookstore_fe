@@ -27,7 +27,7 @@ const BookInfoSection: NextPage<BookInfoSectionProps> = async ({ id, className }
       <div className="flex-shrink-0">
         <Image
           src={selectedBook?.img_url}
-          width={250}
+          width={260}
           height={375} // Adjusted height for better aspect ratio
           alt={`img-${selectedBook?.title}-${selectedBook?.id}`}
           className="shadow-xl object-cover"

@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import { RelatedSection, BookInfoSection } from "@/containers";
-import { books } from "@/lib/mock";
-import { BookInfoSkeleton } from "@/components/loader";
+import { BookInfoSkeleton, RelatedSectionSkeleton } from "@/components/loader";
 
 const BookDetail = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
@@ -19,7 +18,16 @@ const BookDetail = async ({ params }: { params: { id: string } }) => {
         >
           <BookInfoSection id={parseInt(id)} className="lg:col-span-2" />
         </Suspense>
-        <RelatedSection books={books} className="lg:col-auto" />
+        <Suspense
+          key={`book-${id}`}
+          fallback={
+            <div className="col-span-3 lg:col-auto">
+              <RelatedSectionSkeleton />
+            </div>
+          }
+        >
+          <RelatedSection id={parseInt(id)} className="lg:col-auto" />
+        </Suspense>
       </div>
     </div>
   );

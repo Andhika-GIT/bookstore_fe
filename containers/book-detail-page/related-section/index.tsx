@@ -1,18 +1,21 @@
 import React from "react";
 import { BookCard } from "@/components/molecules";
 import { Button, Text } from "@/components/ui";
-import { Book } from "@/types";
+import { NextPage } from "next";
+import { getRelatedBook } from "@/app/actions/book";
 
 type RelatedSectionProps = {
-  books: Array<Book>;
+  id: number;
   className?: string;
 };
 
-const RelatedSection: React.FC<RelatedSectionProps> = ({ books, className }) => {
+const RelatedSection: NextPage<RelatedSectionProps> = async ({ id, className }) => {
+  const books = await getRelatedBook(id);
+
   return (
     <div className={`flex flex-col space-y-5 justify-between items-start ${className}`}>
       <div className="space-y-2 w-full">
-        <Text type="h3" className="font-bold">
+        <Text type="h3" className="!font-bold">
           Related Books
         </Text>
         <Text type="p">Some items that you might be interested in</Text>
@@ -33,9 +36,11 @@ const RelatedSection: React.FC<RelatedSectionProps> = ({ books, className }) => 
             ))}
         </div>
       </div>
-      <Button className="w-full" variant="outline">
-        View More
-      </Button>
+      {books && books?.length !== 0 && (
+        <Button className="w-full" variant="outline">
+          View More
+        </Button>
+      )}
     </div>
   );
 };
