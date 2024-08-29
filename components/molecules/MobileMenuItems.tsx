@@ -26,12 +26,11 @@ type MobileMenuItemsProps = {
 
 const MobileMenuItems: React.FC<MobileMenuItemsProps> = ({ isAuthenticated }) => {
   const pathname = usePathname();
+  const { toast } = useToast();
 
   if (pathname.startsWith("/auth") || pathname === "/404") {
     return null;
   }
-
-  const { toast } = useToast();
 
   const handleLogout = async () => {
     try {

@@ -7,6 +7,7 @@ import { TanstackProvider } from "@/providers/TanstackProvider";
 import Navbar from "@/components/molecules/Navbar";
 import { Toaster } from "@/components/ui";
 import { MobileMenu } from "@/components/molecules";
+import Script from "next/script";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -26,11 +27,11 @@ export default function RootLayout({
     <TanstackProvider>
       <html lang="en">
         <head>
-          <script
-            type="text/javascript"
+          <Script
             src="https://app.sandbox.midtrans.com/snap/snap.js"
             data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_SANDBOX_CLIENT_KEY}
-          ></script>
+            strategy="lazyOnload"
+          />
         </head>
         <body className={rubik.className}>
           <Toaster />

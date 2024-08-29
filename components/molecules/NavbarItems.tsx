@@ -17,12 +17,7 @@ type NavbarItemsProps = {
 
 const NavbarItems: React.FC<NavbarItemsProps> = ({ isAuthenticated }) => {
   const pathname = usePathname();
-
-  if (pathname.startsWith("/auth") || pathname === "/404") {
-    return null;
-  }
   const { toast } = useToast();
-
   const [showNavbar, setShowNavbar] = useState(false);
   const [isShowingCart, setIsShowingCart] = useState<boolean>(false);
 
@@ -68,6 +63,10 @@ const NavbarItems: React.FC<NavbarItemsProps> = ({ isAuthenticated }) => {
       }
     };
   }, []);
+
+  if (pathname.startsWith("/auth") || pathname === "/404") {
+    return null;
+  }
 
   return (
     <div
